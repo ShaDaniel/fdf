@@ -62,7 +62,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 	fdf_parse_width(coords, fdf);
 	while (coords[i])
 	{
-		coord_colors = ft_split(coords[i], ',');
+		coord_colors = ft_strsplit(coords[i], ',');
 		if (coord_colors[1])
 		{
 			fdf->map->origin_colour = 1;
@@ -88,7 +88,7 @@ void			fdf_parse_map(int fd, t_main *fdf)
 
 	while (get_next_line(fd, &line))
 	{
-		fdf_parse_line(ft_split(line, ' '), fdf);
-		free(line)
+		fdf_parse_line(ft_strsplit(line, ' '), fdf);
+		free(line);
 	}
 }

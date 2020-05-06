@@ -4,6 +4,7 @@
 # include <stdlib.h>
 # include <stdint.h>
 # include "libft/libft.h"
+# include "mlx.h"
 
 # define PRG_NAME	"Tjonella's FDF"
 # define WIN_HGHT	1366
