@@ -6,7 +6,7 @@
 /*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 18:56:20 by tjonella          #+#    #+#             */
-/*   Updated: 2019/06/04 23:21:15 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/05/06 23:49:24 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # define BUFF_SIZE 1
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 # include <stdlib.h>
 # include <fcntl.h>
 

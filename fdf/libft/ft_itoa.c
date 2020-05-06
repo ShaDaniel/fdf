@@ -6,26 +6,11 @@
 /*   By: tjonella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 20:31:41 by tjonella          #+#    #+#             */
-/*   Updated: 2019/04/20 19:41:53 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/05/06 23:38:10 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static	int		ft_numlen(int n)
-{
-	int i;
-
-	i = 1;
-	if (n < 0)
-		i++;
-	while (n / 10)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
 
 static	char	*min_value(void)
 {

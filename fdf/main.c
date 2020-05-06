@@ -7,6 +7,6 @@ int		main(int ac, char **av)
 	if (ac != 2)
 		fdf_error(EUSE);
 	fdf_init(&fdf);
-	fdf_parse_map(av[1], fdf);
+	fdf_parse_map(fdf, av[1]);
 	return (0);
 }
