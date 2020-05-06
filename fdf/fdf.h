@@ -6,6 +6,7 @@
 # include "libft/libft.h"
 # include "mlx.h"
 # include "gnl/get_next_line.h"
+# include <error.h>
 
 # define PRG_NAME	"Tjonella's FDF"
 # define WIN_HGHT	1366
