@@ -6,7 +6,7 @@
 # include "libft/libft.h"
 # include "mlx.h"
 # include "gnl/get_next_line.h"
-# include <error.h>
+# include <stdio.h>
 
 # define PRG_NAME	"Tjonella's FDF"
 # define WIN_HGHT	1366
@@ -45,6 +45,7 @@ typedef struct	s_main
 	void		*win;
 	void		*img_init;
 	void		*img_mem;
+	void		*data_addr;
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;

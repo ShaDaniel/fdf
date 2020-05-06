@@ -22,6 +22,6 @@ void	fdf_init(t_main **fdf)
 		fdf_error(EMLX);
 	if (!((*fdf)->img_init = mlx_new_image((*fdf)->mlx, WIN_WID, WIN_HGHT)))
 		fdf_error(EMLX);
-	if (!((*fdf)->data_addr = mlx_get_data_addr((*fdf)->img_init, &((*fdf)->bits_per_pixel), &((*fdf)->size_line), &((*fdf)->endian)))
+	if (!((*fdf)->data_addr = mlx_get_data_addr((*fdf)->img_init, &((*fdf)->bits_per_pixel), &((*fdf)->size_line), &((*fdf)->endian))))
 		fdf_error(EMLX);
 }

@@ -21,4 +21,4 @@ $(LIBFT):
 
 $(NAME): $(LIBFT)
 	gcc -c $(SRC)
-	gcc -o $(NAME) $(OBJ) -I $(HEADERS) -L $(LIBFT) -lft
+	gcc -o $(NAME) $(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft
