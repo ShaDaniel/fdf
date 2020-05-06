@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <stdint.h>
+# include "libft/libft.h"
 
 # define PRG_NAME	"Tjonella's FDF"
 # define WIN_HGHT	1366
@@ -28,7 +29,7 @@ typedef struct	s_map
 	size_t		height;
 	size_t		total;
 	int			*coords;
-	uint_32t	*colours;
+	uint32_t	*colours;
 	char		origin_colour;
 	double		zoom;
 }				t_map;
@@ -41,6 +42,13 @@ typedef struct	s_main
 	void		*win;
 	void		*img_init;
 	void		*img_mem;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
 }				t_main;
+
+void			fdf_parse_map(int fd, t_main *fdf);
+void			fdf_error(char *error);
+void			fdf_init(t_main **fdf);
 
 #endif

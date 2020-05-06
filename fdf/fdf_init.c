@@ -18,9 +18,9 @@ void	fdf_init(t_main **fdf)
 	(*fdf)->map->zoom = 1.0;
 	if (!((*fdf)->mlx = mlx_init()))
 		fdf_error(EMLX);
-	if (!((*fdf)->win = mlx_new_window(*fdf->mlx, WIN_WID, WIN_HGHT, PRG_NAME)))
+	if (!((*fdf)->win = mlx_new_window((*fdf)->mlx, WIN_WID, WIN_HGHT, PRG_NAME)))
 		fdf_error(EMLX);
 	if (!((*fdf)->img_init = mlx_new_image((*fdf)->mlx, WIN_WID, WIN_HGHT)))
 		fdf_error(EMLX);
-	fdf->data_addr = mlx_get_data_addr((*fdf)->img_init, &(fdf->bits_per_pixel), &(fdf->size_line), &(fdf->endian));
+	fdf->data_addr = mlx_get_data_addr((*fdf)->img_init, &((*fdf)->bits_per_pixel), &((*fdf)->size_line), &((*fdf)->endian));
 }

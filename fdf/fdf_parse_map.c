@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-void		fdf_parse_width(char **coords, t_main *fdf)
+static void		fdf_parse_width(char **coords, t_main *fdf)
 {
 	size_t		i;
 	int			*new_coords;
@@ -28,7 +28,7 @@ void		fdf_parse_width(char **coords, t_main *fdf)
 	fdf->map->colours = new_colours;
 }
 
-uint32_t	fdf_parse_colour(char *clr)
+static uint32_t	fdf_parse_colour(char *clr)
 {
 	uint32_t	colour;
 
@@ -52,7 +52,7 @@ uint32_t	fdf_parse_colour(char *clr)
 	return (colour);
 }
 
-void		fdf_parse_line(char **coords, t_main *fdf)
+static void		fdf_parse_line(char **coords, t_main *fdf)
 {
 	char	**coord_colors;
 	size_t	i;
@@ -74,7 +74,7 @@ void		fdf_parse_line(char **coords, t_main *fdf)
 		fdf->map->coords[fdf->map->height * fdf->map->width + i] = coord;
 		if (ft_numlen(coord) != ft_strlen(coord_colors[0]))
 			fdf_error(ECOORD);
-		free(coord_colors[0])
+		free(coord_colors[0]);
 		free(coord_colors[1]);
 		free(coord_colors);
 		//free2darr
@@ -82,7 +82,7 @@ void		fdf_parse_line(char **coords, t_main *fdf)
 	}
 }
 
-void		fdf_parse_map(int fd, t_main *fdf)
+void			fdf_parse_map(int fd, t_main *fdf)
 {
 	char	*line;
 
