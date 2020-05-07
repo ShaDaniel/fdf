@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 20:19:43 by tjonella          #+#    #+#             */
-/*   Updated: 2020/05/06 22:53:42 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/07 14:20:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ int				ft_countlst(t_list *list);
 int				ft_pow(int n, unsigned int pow);
 void			ft_freechararr(char ***arr);
 size_t			ft_numlen(int n);
+char			*ft_strnjoin(char const *s1, char const *s2, int n);
+char			*ft_strndup(const char *s1, int n);
 
 #endif
