@@ -6,7 +6,7 @@
 /*   By: student <student@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 16:43:34 by tjonella          #+#    #+#             */
-/*   Updated: 2020/05/07 20:28:18 by student          ###   ########.fr       */
+/*   Updated: 2020/05/07 22:28:20 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static	char	**allocate(char const *s, char c)
 			}
 			len = 1;
 		}
+		if (!s[i])
+			break ;
 	}
 	return (dim2);
 }
