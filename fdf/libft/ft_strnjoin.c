@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_strnjoin(char const *s1, char const *s2, int n)
+char	*ft_strnjoin(char const *s1, char const *s2, size_t n)
 {
 	size_t	i;
 	size_t	j;
@@ -21,7 +21,7 @@ char	*ft_strnjoin(char const *s1, char const *s2, int n)
 	i = -1;
 	j = -1;
 	dest = NULL;
-	if (s1 && s2 && n > -1)
+	if (s1 && s2)
 	{
 		if (!(dest = malloc(ft_strlen(s1) + (ft_strlen(s2) > n ? n : ft_strlen(s2)) + 1)))
 			return (NULL);

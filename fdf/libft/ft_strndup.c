@@ -12,14 +12,14 @@
 
 #include "libft.h"
 
-char	*ft_strndup(const char *s1, int n)
+char	*ft_strndup(const char *s1, size_t n)
 {
 	size_t	len;
 	size_t	i;
 	char	*place;
 
 	i = 0;
-	if (!s1 || n < 0)
+	if (!s1)
 		return (NULL);
 	len = ft_strlen(s1);
 	len = len > n ? n : len;
