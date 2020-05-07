@@ -13,7 +13,7 @@ LIBFT = 	libft.a
 DIR_LIBFT =	./libft/
 DIR_MLX = ./minilibx_macos/
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(LIBFT) $(NAME)
 
@@ -25,4 +25,5 @@ mlx:
 
 $(NAME): $(LIBFT) mlx
 	gcc -c $(SRC)
-	gcc $(CFLAGS) -o $(NAME) $(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit
+	gcc $(CFLAGS) -o $(NAME) $(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft
+	 #-L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit

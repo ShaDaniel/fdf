@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: student <student@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 16:43:34 by tjonella          #+#    #+#             */
-/*   Updated: 2019/04/18 23:06:06 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/05/07 20:28:18 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static	char	**allocate(char const *s, char c)
 	i = -1;
 	len = 1;
 	x = 0;
-	if (!(dim2 = (char **)malloc(sizeof(char*) * count_words(s, c) + 1)))
+	if (!(dim2 = (char **)malloc(sizeof(char*) * (count_words(s, c) + 1))))
 		return (NULL);
 	while (s[++i])
 	{
