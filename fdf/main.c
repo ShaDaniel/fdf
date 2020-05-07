@@ -7,7 +7,7 @@ int		main(int ac, char **av)
 
 	if (ac != 2)
 		fdf_error(EUSE);
-	if ((fd = open(av[1], O_RDONLY)))
+	if ((fd = open(av[1], O_RDONLY)) == -1)
 	{
 		perror("fdf: ");
 		return (0);

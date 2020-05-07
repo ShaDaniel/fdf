@@ -12,13 +12,13 @@
 # define WIN_HGHT	1366
 # define WIN_WID	768
 
-# define EUSE		"usage: ./fdf [map.fdf]"
-# define ECOORD		"fdf: map coordinates must be a decimal value"
-# define ERECTANG	"fdf: map coordinates must remain a rectangular shape"
-# define ECOLOUR	"fdf: colour add: [COORDS,0x****]"
-# define EMEM		"fdf: memory allocation error"
-# define EOPEN		"fdf: map file open error"
-# define EMLX		"fdf: mlx error"
+# define EUSE		"usage: ./fdf [map.fdf]\n"
+# define ECOORD		"fdf: map coordinates must be a decimal value\n"
+# define ERECTANG	"fdf: map coordinates must remain a rectangular shape\n"
+# define ECOLOUR	"fdf: colour add: [COORDS,0x****]\n"
+# define EMEM		"fdf: memory allocation error\n"
+# define EOPEN		"fdf: map file open error\n"
+# define EMLX		"fdf: mlx error\n"
 
 typedef struct	s_offset
 {
