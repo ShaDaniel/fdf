@@ -39,7 +39,8 @@ static void	fdf_draw_line(t_point *p1, t_point *p2, t_main *fdf)
 	err[0] = dx + dy;
 	while (p1->x != p2->x || p1->y != p2->y)
 	{
-		fdf_draw_pix(p1, fdf);
+		//fdf_draw_pix(p1, fdf);
+		mlx_pixel_put(fdf->mlx, fdf->win, p1->x, p1->y, WHITE);
 		err[1] = err[0] * 2;
 		if (err[1] >= -dy)
 		{
