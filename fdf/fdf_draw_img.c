@@ -66,17 +66,23 @@ void		fdf_draw_img(t_main *fdf)
 	y = 0;
 	p1 = (t_point *)ft_memalloc(sizeof(t_point));
 	p2 = (t_point *)ft_memalloc(sizeof(t_point));
-	while (y < fdf->map->height - 1)
+	while (y < fdf->map->height)
 	{
 		x = 0;
-		while (x < fdf->map->width - 1)
+		while (x < fdf->map->width)
 		{
-			fdf_point_set(p1, x, y, fdf);
-			fdf_point_set(p2, x + 1, y, fdf);
-			fdf_draw_line(p1, p2, fdf);
-			fdf_point_set(p1, x, y, fdf);
-			fdf_point_set(p2, x, y + 1, fdf);
-			fdf_draw_line(p1, p2, fdf);
+			if (x < fdf->map->width - 1)
+			{
+				fdf_point_set(p1, x, y, fdf);
+				fdf_point_set(p2, x + 1, y, fdf);
+				fdf_draw_line(p1, p2, fdf);
+			}
+			if (y < fdf->map->height - 1)
+			{
+				fdf_point_set(p1, x, y, fdf);
+				fdf_point_set(p2, x, y + 1, fdf);
+				fdf_draw_line(p1, p2, fdf);
+			}
 			x++;
 		}
 		y++;
