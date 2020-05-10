@@ -73,6 +73,7 @@ void		fdf_draw_img(t_main *fdf)
 			fdf_point_set(p1, x, y, fdf);
 			fdf_point_set(p2, x + 1, y, fdf);
 			fdf_draw_line(p1, p2, fdf);
+			fdf_point_set(p1, x, y, fdf);
 			fdf_point_set(p2, x, y + 1, fdf);
 			fdf_draw_line(p1, p2, fdf);
 			x++;
