@@ -20,9 +20,9 @@ static void fdf_draw_pix(t_point *p, t_main *fdf)
 		index = p->y * fdf->size_line + p->x * (fdf->bits_per_pixel / 8);
 		//ft_memcpy(&(fdf->data_addr[index]), &colour, 3);
 		colour = WHITE;
-		fdf->data_addr[index] = WHITE;
-		fdf->data_addr[index + 1] = WHITE >> 8;
-		fdf->data_addr[index + 2] = WHITE >> 16;
+		fdf->data_addr[index] = colour;
+		fdf->data_addr[index + 1] = colour >> 8;
+		fdf->data_addr[index + 2] = colour >> 16;
 	}
 }
 
