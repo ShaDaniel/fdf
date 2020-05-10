@@ -14,15 +14,15 @@ static void fdf_draw_pix(t_point *p, t_main *fdf)
 	uint32_t	colour;
 	
 	index = y * fdf->size_line + x * fdf->bits_per_pixel;
-	if (p->x < WIN_WID && y < WIN_HGHT)
+	if (p->x < WIN_WID && p->y < WIN_HGHT)
 	{
 		colour = p->colour << 8;
-		index = y * fdf->size_line + x * fdf->bits_per_pixel;
-		ft_memcpy(&(fdf->data_addr[index]), colour, 3);
+		index = p->y * fdf->size_line + p->x * fdf->bits_per_pixel;
+		ft_memcpy(&(fdf->data_addr[index]), (const void *)colour, 3);
 	}
 }
 
-static void	fdf_draw_line(t_point *p1, t_point *p2)
+static void	fdf_draw_line(t_point *p1, t_point *p2, t_main *fdf)
 {
 	int		dx;
 	int		dy;
@@ -30,8 +30,8 @@ static void	fdf_draw_line(t_point *p1, t_point *p2)
 	int		sy;
 	int		err[2];
 
-	dx = ft_abs(p1->x, p2->x);
-	dy = ft_abs(p1->y, p2->y);
+	dx = ft_abs(p1->x - p2->x);
+	dy = ft_abs(p1->y - p2->y);
 	sx = p1->x > p2->x ? -1 : 1;
 	sy = p1->y > p2->y ? -1 : 1;
 	err[0] = dx + dy;
@@ -70,9 +70,9 @@ void		fdf_draw_img(t_main *fdf)
 		{
 			fdf_point_set(p1, x, y, fdf);
 			fdf_point_set(p2, x + 1, y, fdf);
-			fdf_draw_line(p1, p2);
+			fdf_draw_line(p1, p2, fdf);
 			fdf_point_set(p2, x, y + 1, fdf);
-			fdf_draw_line(p1, p2);
+			fdf_draw_line(p1, p2, fdf);
 			x++;
 		}
 		y++;
