@@ -24,7 +24,7 @@
 # define EOPEN		"fdf: map file open error\n"
 # define EMLX		"fdf: mlx error\n"
 
-# define WHITE		0x00FFFFFF
+# define WHITE		0xFFFFFF
 
 typedef struct	s_point
 {
@@ -48,7 +48,7 @@ typedef struct	s_map
 	int			*coords;
 	uint32_t	*colours;
 	char		origin_colour;
-	double		zoom;
+	int			zoom;
 }				t_map;
 
 typedef struct	s_main
