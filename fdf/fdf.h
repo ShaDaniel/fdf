@@ -9,8 +9,8 @@
 # include <stdio.h>
 
 # define PRG_NAME	"Tjonella's FDF"
-# define WIN_HGHT	1366
-# define WIN_WID	768
+# define WIN_HGHT	600
+# define WIN_WID	800
 
 # define ZOOM_MIN	1
 # define ZOOM_MAX	10
