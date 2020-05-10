@@ -26,6 +26,7 @@ static void		fdf_parse_width(char **coords, t_main *fdf)
 	//free(fdf->map->colours);
 	fdf->map->coords = new_coords;
 	fdf->map->colours = new_colours;
+	fdf->map->total += fdf->map->width;
 }
 
 static uint32_t	fdf_parse_colour(char *clr)
@@ -96,5 +97,5 @@ void			fdf_parse_map(int fd, t_main *fdf)
 		line = NULL;
 	}
 	if (!(fdf->map->origin_colour))
-		ft_memset(fdf->map->colours, WHITE, fdf->map->width * fdf->map->height);
+		ft_memset(fdf->map->colours, WHITE, fdf->map->total);
 }
