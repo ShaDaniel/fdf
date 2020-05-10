@@ -16,5 +16,6 @@ int		main(int ac, char **av)
 	fdf_parse_map(fd, fdf);
 	fdf_draw_img(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->data_addr, 0, 0);
+	mlx_loop(fdf->mlx);
 	return (0);
 }
