@@ -58,7 +58,7 @@ typedef struct	s_main
 	void		*mlx;
 	void		*win;
 	void		*img_init;
-	void		*data_addr;
+	char		*data_addr;
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
