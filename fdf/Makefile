@@ -3,7 +3,8 @@ NAME = fdf
 SRC =		main.c\
 			fdf_init.c\
 			fdf_parse_map.c\
-			fdf_error.c
+			fdf_error.c\
+			fdf_draw_img.c
 
 HEADERS =	fdf.h
 
@@ -25,5 +26,4 @@ mlx:
 
 $(NAME): $(LIBFT) mlx
 	gcc -c $(SRC)
-	gcc $(CFLAGS) -o $(NAME) $(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft
-	 #-L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit
+	gcc $(CFLAGS) -o $(NAME) $(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit
