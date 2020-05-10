@@ -17,8 +17,11 @@ static void fdf_draw_pix(t_point *p, t_main *fdf)
 	if (p->x < WIN_WID && p->y < WIN_HGHT)
 	{
 		colour = p->colour << 8;
-		index = p->y * fdf->size_line + p->x * fdf->bits_per_pixel;
-		ft_memcpy(&(fdf->data_addr[index]), &colour, 3);
+		index = p->y * fdf->size_line + p->x * (fdf->bits_per_pixel / 8);
+		//ft_memcpy(&(fdf->data_addr[index]), &colour, 3);
+		fdf->data_addr[i] = 255;
+		fdf->data_addr[i + 1] = 255;
+		fdf->data_addr[i + 2] = 255;
 	}
 }
 
