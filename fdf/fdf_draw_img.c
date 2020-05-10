@@ -13,12 +13,12 @@ static void fdf_draw_pix(t_point *p, t_main *fdf)
 	size_t		index;
 	uint32_t	colour;
 	
-	index = y * fdf->size_line + x * fdf->bits_per_pixel;
+	index = p->y * fdf->size_line + p->x * fdf->bits_per_pixel;
 	if (p->x < WIN_WID && p->y < WIN_HGHT)
 	{
 		colour = p->colour << 8;
 		index = p->y * fdf->size_line + p->x * fdf->bits_per_pixel;
-		ft_memcpy(&(fdf->data_addr[index]), (const void *)colour, 3);
+		ft_memcpy(&(fdf->data_addr[index]), &colour, 3);
 	}
 }
 
