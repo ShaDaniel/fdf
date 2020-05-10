@@ -4,8 +4,8 @@ static void	fdf_point_set(t_point *p, size_t x, size_t y, t_main *fdf)
 {
 	p->x = fdf->offset->x + x * DIST_MIN * fdf->map->zoom;
 	p->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
-	p->z = fdf->map->coords[y * fdf->map->width + x];
-	p->colour = fdf->map->colours[y * fdf->map->width + x];
+	p->z = fdf->map->coords[y * fdf->map->height + x];
+	p->colour = fdf->map->colours[y * fdf->map->height + x];
 }
 
 static void fdf_draw_pix(t_point *p, t_main *fdf)
@@ -13,13 +13,12 @@ static void fdf_draw_pix(t_point *p, t_main *fdf)
 	size_t		index;
 	int			colour;
 	
-	index = p->y * fdf->size_line + p->x * fdf->bits_per_pixel;
 	if (p->x < WIN_WID && p->y < WIN_HGHT)
 	{
 		colour = p->colour << 8;
 		index = p->y * fdf->size_line + p->x * (fdf->bits_per_pixel / 8);
 		//ft_memcpy(&(fdf->data_addr[index]), &colour, 3);
-		colour = WHITE;
+		colour = mlx_get_color_value(fdf->mlx, WHITE);
 		fdf->data_addr[index] = colour;
 		fdf->data_addr[index + 1] = colour >> 8;
 		fdf->data_addr[index + 2] = colour >> 16;

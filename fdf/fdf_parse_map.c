@@ -79,9 +79,9 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 		//free(coord_colors[0]);
 		//free(coord_colors);
 		//free2darr
-		fdf->map->height++;
 		i++;
 	}
+	fdf->map->height++;
 }
 
 void			fdf_parse_map(int fd, t_main *fdf)
@@ -91,10 +91,8 @@ void			fdf_parse_map(int fd, t_main *fdf)
 	line = NULL;
 	while (get_next_line(fd, &line))
 	{
-		if (line && *line)
-			fdf_parse_line(ft_strsplit(line, ' '), fdf);
-		//free(line);
-		line = NULL;
+		fdf_parse_line(ft_strsplit(line, ' '), fdf);
+		free(line);
 	}
 	if (!(fdf->map->origin_colour))
 		ft_memset(fdf->map->colours, WHITE, fdf->map->total);
