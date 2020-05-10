@@ -24,6 +24,8 @@
 # define EOPEN		"fdf: map file open error\n"
 # define EMLX		"fdf: mlx error\n"
 
+# define WHITE		0x00FFFFFF
+
 typedef struct	s_point
 {
 	size_t		x;

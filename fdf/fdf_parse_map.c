@@ -95,4 +95,6 @@ void			fdf_parse_map(int fd, t_main *fdf)
 		//free(line);
 		line = NULL;
 	}
+	if (!(fdf->map->origin_colour))
+		ft_memset(fdf->map->colours, WHITE, fdf->map->width * fdf->map->height);
 }
