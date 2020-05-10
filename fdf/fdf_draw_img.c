@@ -34,16 +34,16 @@ static void	fdf_draw_line(t_point *p1, t_point *p2, t_main *fdf)
 
 	dx = ft_abs(p1->x - p2->x);
 	dy = ft_abs(p1->y - p2->y);
-	sx = p1->x > p2->x ? -1 : 1;
-	sy = p1->y > p2->y ? -1 : 1;
+	sx = p1->x < p2->x ? 1 : -1;
+	sy = p1->y < p2->y ? 1 : -1;
 	err[0] = dx + dy;
 	while (p1->x != p2->x && p1->y != p2->y)
 	{
 		fdf_draw_pix(p1, fdf);
 		err[1] = err[0] * 2;
-		if (err[1] >= dy)
+		if (err[1] >= -dy)
 		{
-			err[0] += dy;
+			err[0] -= dy;
 			p1->x += sx;
 		}
 		if (err[1] <= dx)
