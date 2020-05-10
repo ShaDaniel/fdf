@@ -22,8 +22,8 @@ static void		fdf_parse_width(char **coords, t_main *fdf)
 		fdf_error(EMEM);
 	ft_memcpy(new_coords, fdf->map->coords, fdf->map->total * sizeof(int));
 	ft_memcpy(new_colours, fdf->map->colours, fdf->map->total * sizeof(uint32_t));
-	free(fdf->map->coords);
-	free(fdf->map->colours);
+	//free(fdf->map->coords);
+	//free(fdf->map->colours);
 	fdf->map->coords = new_coords;
 	fdf->map->colours = new_colours;
 }
@@ -76,7 +76,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 			fdf_error(ECOORD);
 		//free(coord_colors[1]);
 		//free(coord_colors[0]);
-		free(coord_colors);
+		//free(coord_colors);
 		//free2darr
 		fdf->map->height++;
 		i++;
