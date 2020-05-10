@@ -12,6 +12,10 @@
 # define WIN_HGHT	1366
 # define WIN_WID	768
 
+# define ZOOM_MIN	1
+# define ZOOM_MAX	10
+# define DIST_MIN	16
+
 # define EUSE		"usage: ./fdf [map.fdf]\n"
 # define ECOORD		"fdf: map coordinates must be a decimal value\n"
 # define ERECTANG	"fdf: map coordinates must remain a rectangular shape\n"
@@ -20,10 +24,18 @@
 # define EOPEN		"fdf: map file open error\n"
 # define EMLX		"fdf: mlx error\n"
 
+typedef struct	s_point
+{
+	size_t		x;
+	size_t		y;
+}				t_point;
+
 typedef struct	s_offset
 {
-	int	x;
-	int	y;
+	size_t		x;
+	size_t		y;
+	size_t		z;
+	uint32_t	colour;
 }				t_offset;
 
 typedef struct	s_map
@@ -44,7 +56,6 @@ typedef struct	s_main
 	void		*mlx;
 	void		*win;
 	void		*img_init;
-	void		*img_mem;
 	void		*data_addr;
 	int			bits_per_pixel;
 	int			size_line;
@@ -54,5 +65,6 @@ typedef struct	s_main
 void			fdf_parse_map(int fd, t_main *fdf);
 void			fdf_error(char *error);
 void			fdf_init(t_main **fdf);
+void			fdf_draw_img(t_main *fdf);
 
 #endif
