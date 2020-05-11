@@ -36,16 +36,16 @@
 
 typedef struct	s_point
 {
-	size_t		x;
-	size_t		y;
-	size_t		z;
+	int			x;
+	int			y;
+	int			z;
 	uint32_t	colour;
 }				t_point;
 
 typedef struct	s_offset
 {
-	size_t		x;
-	size_t		y;
+	int		x;
+	int		y;
 }				t_offset;
 
 typedef struct	s_map
