@@ -76,6 +76,6 @@ void			fdf_parse_map(int fd, t_main *fdf);
 void			fdf_error(char *error);
 void			fdf_init(t_main **fdf);
 void			fdf_draw_img(t_main *fdf);
-void			keyboard_hook(int keycode, void *param);
+int				keyboard_hook(int keycode, void *param);
 
 #endif

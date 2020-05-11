@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-void	keyboard_hook(int keycode, void *param)
+int		keyboard_hook(int keycode, void *param)
 {
 	t_main *fdf;
 
@@ -20,4 +20,5 @@ void	keyboard_hook(int keycode, void *param)
 	else if (keycode == KEY_RIGHT)
 		fdf->offset->x += 10;
 	fdf_draw_img(fdf);
+	return (0);
 }
