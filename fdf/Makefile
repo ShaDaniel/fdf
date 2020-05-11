@@ -4,7 +4,8 @@ SRC =		main.c\
 			fdf_init.c\
 			fdf_parse_map.c\
 			fdf_error.c\
-			fdf_draw_img.c
+			fdf_draw_img.c\
+			fdf_hooks.c
 
 HEADERS =	fdf.h
 

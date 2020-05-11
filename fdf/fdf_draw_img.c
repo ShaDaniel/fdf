@@ -62,7 +62,7 @@ void		fdf_draw_img(t_main *fdf)
 	t_point	*p1;
 	t_point *p2;
 
-	return ;
+	mlx_clear_window(fdf->mlx, fdf->win);
 	x = 0;
 	y = 0;
 	p1 = (t_point *)ft_memalloc(sizeof(t_point));
@@ -88,4 +88,5 @@ void		fdf_draw_img(t_main *fdf)
 		}
 		y++;
 	}
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
 }

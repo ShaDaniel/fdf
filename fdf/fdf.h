@@ -26,6 +26,14 @@
 
 # define WHITE		0xFFFFFF
 
+# define KEY_UP		126
+# define KEY_DOWN	125
+# define KEY_LEFT	123
+# define KEY_RIGHT	124
+# define KEY_I		34
+# define KEY_P		35
+# define KEY_ESC	53
+
 typedef struct	s_point
 {
 	size_t		x;
@@ -57,7 +65,7 @@ typedef struct	s_main
 	t_offset	*offset;
 	void		*mlx;
 	void		*win;
-	void		*img_init;
+	void		*img;
 	char		*data_addr;
 	int			bits_per_pixel;
 	int			size_line;
@@ -68,5 +76,6 @@ void			fdf_parse_map(int fd, t_main *fdf);
 void			fdf_error(char *error);
 void			fdf_init(t_main **fdf);
 void			fdf_draw_img(t_main *fdf);
+void			keyboard_hook(int keycode, void *param);
 
 #endif
