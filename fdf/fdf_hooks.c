@@ -19,6 +19,8 @@ int		keyboard_hook(int keycode, void *param)
 		fdf->offset->x -= 10;
 	else if (keycode == KEY_RIGHT)
 		fdf->offset->x += 10;
+	
+	mlx_clear_window(fdf->mlx, fdf->win);
 	fdf_draw_img(fdf);
 	return (0);
 }
