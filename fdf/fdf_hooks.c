@@ -20,7 +20,7 @@ int		keyboard_hook(int keycode, void *param)
 	else if (keycode == KEY_RIGHT)
 		fdf->offset->x += 10;
 	
-	mlx_clear_window(fdf->mlx, fdf->win);
+	ft_memset(fdf->data_addr, 0, fdf->size_line * WIN_HGHT);
 	fdf_draw_img(fdf);
 	return (0);
 }
