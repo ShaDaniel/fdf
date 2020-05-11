@@ -62,6 +62,7 @@ void		fdf_draw_img(t_main *fdf)
 	t_point	*p1;
 	t_point *p2;
 
+	return ;
 	x = 0;
 	y = 0;
 	p1 = (t_point *)ft_memalloc(sizeof(t_point));
