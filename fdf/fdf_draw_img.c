@@ -98,5 +98,7 @@ void		fdf_draw_img(t_main *fdf)
 		}
 		y++;
 	}
+	free(p1);
+	free(p2);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
 }
