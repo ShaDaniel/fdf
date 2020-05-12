@@ -15,7 +15,7 @@
 
 # define ZOOM_MIN	1
 # define ZOOM_MAX	10
-# define DIST_MIN	16
+# define DIST_MIN	4
 
 # define EUSE		"usage: ./fdf [map.fdf]\n"
 # define ECOORD		"fdf: map coordinates must be a decimal value\n"
