@@ -23,9 +23,9 @@ int		keyboard_hook(int keycode, void *param)
 		fdf->map->zoom--;
 	else if (keycode == KEY_RBRK && fdf->map->zoom < 40)
 		fdf->map->zoom++;
-	else if (keycode == KEY_Z && fdf->map->zscale < 40)
+	else if (keycode == KEY_Z && fdf->map->zscale < 20)
 		fdf->map->zscale++;
-	else if (keycode == KEY_X && fdf->map->zscale > 1)
+	else if (keycode == KEY_X && fdf->map->zscale > -20)
 		fdf->map->zscale--;
 	
 	ft_memset(fdf->data_addr, 0, fdf->size_line * WIN_HGHT);
