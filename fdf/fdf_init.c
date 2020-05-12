@@ -17,7 +17,7 @@ void	fdf_init(t_main **fdf)
 	(*fdf)->offset->x = 100;
 	(*fdf)->offset->y = 100;
 	
-	(*fdf)->map->zoom = 1;
+	(*fdf)->map->zoom = 4;
 	if (!((*fdf)->mlx = mlx_init()))
 		fdf_error(EMLX);
 	if (!((*fdf)->win = mlx_new_window((*fdf)->mlx, WIN_WID, WIN_HGHT, PRG_NAME)))
