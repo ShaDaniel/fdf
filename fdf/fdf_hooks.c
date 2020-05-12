@@ -19,10 +19,10 @@ int		keyboard_hook(int keycode, void *param)
 		fdf->offset->x -= 10;
 	else if (keycode == KEY_RIGHT)
 		fdf->offset->x += 10;
-	else if (keycode == KEY_LBRK && fdf->zoom > 0.25)
-		fdf->zoom -= 0.25;
-	else if (keycode == KEY_LBRK && fdf->zoom < 5.0)
-		fdf->zoom += 0.25;	
+	else if (keycode == KEY_LBRK && fdf->map->zoom > 0.25)
+		fdf->map->zoom -= 0.25;
+	else if (keycode == KEY_RBRK && fdf->map->zoom < 5.0)
+		fdf->map->zoom += 0.25;	
 	
 	ft_memset(fdf->data_addr, 0, fdf->size_line * WIN_HGHT);
 	fdf_draw_img(fdf);
