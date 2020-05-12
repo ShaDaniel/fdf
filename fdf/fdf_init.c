@@ -16,6 +16,7 @@ void	fdf_init(t_main **fdf)
 	(*fdf)->map->coords = NULL;
 	(*fdf)->offset->x = 100;
 	(*fdf)->offset->y = 100;
+	(*fdf)->map->zscale = 3;
 	
 	(*fdf)->map->zoom = 4;
 	if (!((*fdf)->mlx = mlx_init()))

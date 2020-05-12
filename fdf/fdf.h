@@ -36,6 +36,8 @@
 # define KEY_ESC	53
 # define KEY_LBRK	33
 # define KEY_RBRK	30
+# define KEY_Z		6
+# define KEY_X		7
 
 typedef struct	s_point
 {
@@ -60,6 +62,7 @@ typedef struct	s_map
 	uint32_t	*colours;
 	char		origin_colour;
 	int			zoom;
+	int			zscale;
 }				t_map;
 
 typedef struct	s_main
