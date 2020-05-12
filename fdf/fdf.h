@@ -34,6 +34,8 @@
 # define KEY_I		34
 # define KEY_P		35
 # define KEY_ESC	53
+# define KEY_LBRK	33
+# define KEY_RBRK	30
 
 typedef struct	s_point
 {
