@@ -2,8 +2,8 @@
 
 static void	fdf_point_set(t_point *p, size_t x, size_t y, t_main *fdf)
 {
-	int	x;
-	int	y;
+	int	old_x;
+	int	old_y;
 
 	p->x = fdf->offset->x + x * DIST_MIN * fdf->map->zoom;
 	p->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
@@ -11,11 +11,11 @@ static void	fdf_point_set(t_point *p, size_t x, size_t y, t_main *fdf)
 	p->colour = fdf->map->colours[y * fdf->map->height + x];
 	if (fdf->iso)
 	{
-		x = p->x;
-		y = p->y;
+		old_x = p->x;
+		old_y = p->y;
 
-		p->x = (x - y) * cos(0.8);
-		p->y = (x + y) * sin(0.8) - p->z;
+		p->x = (old_x - old_y) * cos(0.8);
+		p->y = (old_x + old_y) * sin(0.8) - p->z;
 	}
 }
 
