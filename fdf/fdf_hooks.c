@@ -8,9 +8,9 @@ int		keyboard_hook(int keycode, void *param)
 	if (keycode == KEY_ESC)
 		exit(0);
 	else if (keycode == KEY_I)
-		;
+		fdf->iso = 1;
 	else if (keycode == KEY_P)
-		;
+		fdf->iso = 0;
 	else if (keycode == KEY_UP)
 		fdf->offset->y -= 10;
 	else if (keycode == KEY_DOWN)

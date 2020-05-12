@@ -7,6 +7,7 @@
 # include "mlx.h"
 # include "gnl/get_next_line.h"
 # include <stdio.h>
+# include <math.h>
 
 # define PRG_NAME	"Tjonella's FDF"
 # define WIN_HGHT	600
@@ -70,6 +71,7 @@ typedef struct	s_main
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
+	int			iso;
 }				t_main;
 
 void			fdf_parse_map(int fd, t_main *fdf);
