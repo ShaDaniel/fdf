@@ -60,13 +60,10 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 	int		coord;
 
 	i = 0;
-	ft_putstr("OK_2?");
 	fdf_parse_width(coords, fdf);
 	while (coords[i])
 	{
-		ft_putstr("OK_3?");
-		coord_colors = strtok(coords[i], ','); ////////
-		ft_putstr("!!!");
+		coord_colors = ft_strsplit(coords[i], ',');
 		if (coord_colors[1])
 		{
 			fdf->map->origin_colour = 1;
@@ -76,13 +73,9 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 		}
 		coord = ft_atoi(coord_colors[0]);
 		fdf->map->coords[fdf->map->height * fdf->map->width + i] = coord;
-		ft_putstr("~~~");
-		if (i % 18 == 0)
-			ft_putchar('\n');
 		if (ft_numlen(coord) != ft_strlen(coord_colors[0]))
 			fdf_error(ECOORD);
-		//ft_freechararr(coord_colors);
-		ft_putstr("FREEEEEEEEE");
+		ft_freechararr(coord_colors);
 		i++;
 	}
 	fdf->map->height++;
@@ -96,9 +89,7 @@ void			fdf_parse_map(int fd, t_main *fdf)
 	line = NULL;
 	while (get_next_line(fd, &line))
 	{
-		ft_putstr(line);
-		ft_putstr("OK_1?");
-		coords = strtok(line, ' ');
+		coords = ft_strsplit(line, ' ');
 		fdf_parse_line(coords, fdf);
 		ft_strdel(line);
 		ft_freechararr(coords);
