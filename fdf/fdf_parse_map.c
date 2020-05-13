@@ -13,6 +13,7 @@ static void		fdf_parse_width(char **coords, t_main *fdf)
 		fdf->map->width = i;
 	else if (fdf->map->width != i)
 		fdf_error(ERECTANG);
+	ft_putstr("wid???");
 	new_coords = (int *)ft_memalloc(fdf->map->total * sizeof(int) + fdf->map->width);
 	new_colours = (uint32_t *)ft_memalloc(fdf->map->total * sizeof(uint32_t) + fdf->map->width);
 	if (!new_coords || !new_colours)
