@@ -26,6 +26,7 @@ static void		fdf_parse_width(char **coords, t_main *fdf)
 	fdf->map->coords = new_coords;
 	fdf->map->colours = new_colours;
 	fdf->map->total += fdf->map->width;
+	ft_putstr("wid333333???");
 }
 
 static uint32_t	fdf_parse_colour(char *clr)
