@@ -22,6 +22,22 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	}
 }
 
+static void	balance_colours(double *red, double *green, double *blue)
+{
+	if (*red < 0.01)
+		*red += 0.02;
+	if (*green < 0.01)
+		*green += 0.02;
+	if (*blue < 0.01)
+		*blue += 0.02;
+	if (*red > 0.99)
+		*red -= 0.02;
+	if (*green > 0.99)
+		*green -= 0.02;
+	if (*blue > 0.99)
+		*blue -= 0.02;
+}
+
 static int	fdf_colour_get(t_point *p, t_main *fdf)
 {
 	double	red_coeff;
@@ -32,11 +48,10 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 		p->colour_s = WHITE;
 	if (!p->colour_f)
 		p->colour_f = WHITE;
-
 	red_coeff = (double)(((p->colour_f >> 16) & 0xFF) - ((p->colour_s >> 16) & 0xFF)) / (double)((p->colour_f >> 16) & 0xFF);
 	green_coeff = (double)(((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF)) / (double)((p->colour_f >> 8) & 0xFF);
 	blue_coeff = (double)((p->colour_f & 0xFF) - (p->colour_s & 0xFF)) / (double)(p->colour_f & 0xFF);
-
+	balance_colours(&red_coeff, &green_coeff, &blue_coeff);
 	if (p->colour_f == WHITE)
 	{
 		printf("\n%i %i %f\n", ((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), red_coeff);
@@ -47,9 +62,6 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 				 + ((p->colour_f >> 8) & 0xFF) * (1 - green_coeff)) << 8) |\
 				 (int)(((p->colour_s & 0xFF) * blue_coeff\
 				 + (p->colour_f & 0xFF) * (1 - blue_coeff)));
-	//red = (((p->colour_f >> 16) & 0xFF) - ((p->colour_s >> 16) & 0xFF)) / colour_step;
-	//green = (((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF)) / colour_step;
-	//blue = ((p->colour_f & 0xFF) - (p->colour_s & 0xFF)) / colour_step;
 	return (p->colour_s);
 }
 
@@ -62,9 +74,6 @@ static void fdf_draw_pix(t_point *p, t_main *fdf)
 	{
 		index = p->y * fdf->size_line + p->x * (fdf->bits_per_pixel / 8);
 		colour = mlx_get_color_value(fdf->mlx, fdf_colour_get(p, fdf));
-		//fdf->data_addr[index] = 255;
-		//fdf->data_addr[index + 1] = 255;
-		//fdf->data_addr[index + 2] = 255;
 		fdf->data_addr[index] = colour;
 		fdf->data_addr[index + 1] = colour >> 8;
 		fdf->data_addr[index + 2] = colour >> 16;
