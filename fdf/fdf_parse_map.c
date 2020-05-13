@@ -94,6 +94,7 @@ void			fdf_parse_map(int fd, t_main *fdf)
 	line = NULL;
 	while (get_next_line(fd, &line))
 	{
+		ft_putstr(line);
 		ft_putstr("OK_1?");
 		coords = ft_strsplit(line, ' ');
 		fdf_parse_line(coords, fdf);
