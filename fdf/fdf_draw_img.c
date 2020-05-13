@@ -9,6 +9,7 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	p->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
 	p->z = fdf->map->coords[y * fdf->map->width + x] * fdf->map->zscale;
 	p->colour_s = (int)fdf->map->colours[y * fdf->map->width + x];
+	ft_putnbr(p->colour_s);
 	if (fin)
 		p->colour_f = fin->colour_s;
 	if (fdf->iso)
@@ -36,10 +37,10 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	green_coeff = (double)(((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF)) / (double)((p->colour_f >> 8) & 0xFF);
 	blue_coeff = (double)((p->colour_f & 0xFF) - (p->colour_s & 0xFF)) / (double)(p->colour_f & 0xFF);
 
-	if (p->colour_f != WHITE)
+	/*if (p->colour_f != WHITE)
 	{
 		printf("%i %i %f\n", ((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), red_coeff);
-	}
+	}*/
 	p->colour_s = ((int)(((p->colour_s >> 16) & 0xFF) * (1 - red_coeff)\
 				 + ((p->colour_f >> 16) & 0xFF) * red_coeff) << 16) |\
 				 ((int)(((p->colour_s >> 8) & 0xFF) * (1 - green_coeff)\
