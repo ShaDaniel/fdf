@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *fdf)
+static void	fdf_point_set(t_point *p, char fin, size_t x, size_t y, t_main *fdf)
 {
 	int	old_x;
 	int	old_y;
@@ -10,7 +10,7 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	p->z = fdf->map->coords[y * fdf->map->width + x] * fdf->map->zscale;
 	p->colour_s = (int)fdf->map->colours[y * fdf->map->width + x];
 	if (fin)
-		p->colour_f = (int)fdf->map->colours[fin->y * fdf->map->width + fin->x];
+		p->colour_f = (int)fdf->map->colours[(y + fin == 'y' ? 1 : 0) * fdf->map->width + x + fin == 'y' ? 0 : 1];
 	if (fdf->iso)
 	{
 		old_x = p->x;
@@ -37,7 +37,7 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	green = (ft_abs((p->colour_f >> 8) - (p->colour_s >> 8)) & 0xFF) / colour_step;
 	blue = (ft_abs(p->colour_f - p->colour_s) & 0xFF) / colour_step;
 	p->colour_s += ((red << 16) | (green << 8) | blue);
-	return (p->colour_s); 
+	return (p->colour_s);
 }
 
 static void fdf_draw_pix(t_point *p, t_main *fdf)
@@ -107,13 +107,13 @@ void		fdf_draw_img(t_main *fdf)
 			if (x < fdf->map->width - 1)
 			{
 				fdf_point_set(p2, NULL, x + 1, y, fdf);
-				fdf_point_set(p1, p2, x, y, fdf);
+				fdf_point_set(p1, 'x', x, y, fdf);
 				fdf_draw_line(p1, p2, fdf);
 			}
 			if (y < fdf->map->height - 1)
 			{
 				fdf_point_set(p2, NULL, x, y + 1, fdf);
-				fdf_point_set(p1, p2, x, y, fdf);
+				fdf_point_set(p1, 'y', x, y, fdf);
 				fdf_draw_line(p1, p2, fdf);
 			}
 			x++;
