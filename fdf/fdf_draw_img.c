@@ -36,7 +36,7 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	green_coeff = (double)(((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF)) / (double)((p->colour_f >> 8) & 0xFF);
 	blue_coeff = (double)((p->colour_f & 0xFF) - (p->colour_s & 0xFF)) / (double)(p->colour_f & 0xFF);
 
-	printf("%f %f %f\n", red_coeff, green_coeff, blue_coeff);
+	printf("%i %i %f\n", ((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), red_coeff);
 	p->colour_s = ((int)(((p->colour_s >> 16) & 0xFF) * (1 - red_coeff)\
 				 + ((p->colour_f >> 16) & 0xFF) * red_coeff) << 16) |\
 				 ((int)(((p->colour_s >> 8) & 0xFF) * (1 - green_coeff)\
