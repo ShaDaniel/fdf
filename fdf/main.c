@@ -14,8 +14,8 @@ int		main(int ac, char **av)
 	}
 	fdf_init(&fdf);
 	fdf_parse_map(fd, fdf);
-	fdf_draw_img(fdf);
-	mlx_key_hook(fdf->win, keyboard_hook, fdf);
-	mlx_loop(fdf->mlx);
+	//fdf_draw_img(fdf);
+//	mlx_key_hook(fdf->win, keyboard_hook, fdf);
+//	mlx_loop(fdf->mlx);
 	return (0);
 }

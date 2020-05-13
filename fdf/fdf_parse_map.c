@@ -91,7 +91,7 @@ void			fdf_parse_map(int fd, t_main *fdf)
 	{
 		coords = ft_strsplit(line, ' ');
 		fdf_parse_line(coords, fdf);
-		free(line);
+		ft_strdel(&line);
 		ft_freechararr(&coords);
 	}
 }
