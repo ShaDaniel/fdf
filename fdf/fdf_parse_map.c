@@ -57,6 +57,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 	int		coord;
 
 	i = 0;
+	ft_putstr("parse_width?\n");
 	fdf_parse_width(coords, fdf);
 	ft_putstr("_____\n");
 	while (coords[i])
