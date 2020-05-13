@@ -64,6 +64,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 	fdf_parse_width(coords, fdf);
 	while (coords[i])
 	{
+		ft_putstr("OK_3?");
 		coord_colors = ft_strsplit(coords[i], ',');
 		if (coord_colors[1])
 		{
