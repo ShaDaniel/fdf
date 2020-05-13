@@ -21,8 +21,11 @@ static void		fdf_parse_width(char **coords, t_main *fdf)
 	ft_putstr("wid222???");
 	ft_memcpy(new_coords, fdf->map->coords, fdf->map->total * sizeof(int));
 	ft_memcpy(new_colours, fdf->map->colours, fdf->map->total * sizeof(uint32_t));
+	
+	ft_putstr("wid222****???");
 	free(fdf->map->coords);
 	free(fdf->map->colours);
+	ft_putstr("wid222???====");
 	fdf->map->coords = new_coords;
 	fdf->map->colours = new_colours;
 	fdf->map->total += fdf->map->width;
