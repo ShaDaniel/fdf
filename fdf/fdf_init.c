@@ -17,12 +17,12 @@ void	fdf_init(t_main **fdf)
 	(*fdf)->offset->y = 100;
 	(*fdf)->map->zscale = 3;
 	(*fdf)->map->zoom = 4;
-	/*if (!((*fdf)->mlx = mlx_init()))
+	if (!((*fdf)->mlx = mlx_init()))
 		fdf_error(EMLX);
 	if (!((*fdf)->win = mlx_new_window((*fdf)->mlx, WIN_WID, WIN_HGHT, PRG_NAME)))
 		fdf_error(EMLX);
 	if (!((*fdf)->img = mlx_new_image((*fdf)->mlx, WIN_WID, WIN_HGHT)))
 		fdf_error(EMLX);
 	if (!((*fdf)->data_addr = mlx_get_data_addr((*fdf)->img, &((*fdf)->bits_per_pixel), &((*fdf)->size_line), &((*fdf)->endian))))
-		fdf_error(EMLX);*/
+		fdf_error(EMLX);
 }
