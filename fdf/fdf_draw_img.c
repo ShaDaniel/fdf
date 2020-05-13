@@ -36,7 +36,7 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	red = ((p->colour_f >> 16) - (p->colour_s >> 16)) / colour_step;
 	green = ((p->colour_f >> 8) - (p->colour_s >> 8)) / colour_step;
 	blue = (p->colour_f - p->colour_s) / colour_step;
-	p->colour_s += ((red & 0xFF << 16) | (green & 0xFF << 8) | blue & 0xFF);
+	p->colour_s += ((red & 0xFF << 16) | (green & 0xFF << 8) | (blue & 0xFF));
 	return (p->colour_s); 
 }
 
