@@ -66,6 +66,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 	{
 		ft_putstr("OK_3?");
 		coord_colors = ft_strsplit(coords[i], ',');
+		ft_putstr("!!!");
 		if (coord_colors[1])
 		{
 			fdf->map->origin_colour = 1;
@@ -75,7 +76,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 		}
 		coord = ft_atoi(coord_colors[0]);
 		fdf->map->coords[fdf->map->height * fdf->map->width + i] = coord;
-		printf("%3d", coord);
+		ft_putstr("~~~");
 		if (i % 18 == 0)
 			ft_putchar('\n');
 		if (ft_numlen(coord) != ft_strlen(coord_colors[0]))
