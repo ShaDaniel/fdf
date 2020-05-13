@@ -13,23 +13,17 @@ static void		fdf_parse_width(char **coords, t_main *fdf)
 		fdf->map->width = i;
 	else if (fdf->map->width != i)
 		fdf_error(ERECTANG);
-	ft_putstr("wid???");
 	tmp_coords = fdf->map->coords;
 	tmp_colours = fdf->map->colours;
 	fdf->map->coords = (int *)ft_memalloc((fdf->map->total + fdf->map->width) * sizeof(int));
 	fdf->map->colours = (uint32_t *)ft_memalloc((fdf->map->total + fdf->map->width) * sizeof(uint32_t));
 	if (!fdf->map->coords || !fdf->map->colours)
 		fdf_error(EMEM);
-	ft_putstr("wid222???");
 	ft_memcpy(fdf->map->coords, tmp_coords, fdf->map->total * sizeof(int));
 	ft_memcpy(fdf->map->colours, tmp_colours, fdf->map->total * sizeof(uint32_t));
-	
-	ft_putstr("wid222****???");
 	free(tmp_coords);
 	free(tmp_colours);
-	ft_putstr("wid222====");
 	fdf->map->total += fdf->map->width;
-	ft_putstr("wid333333???");
 }
 
 static uint32_t	fdf_parse_colour(char *clr)
@@ -63,9 +57,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 	int		coord;
 
 	i = 0;
-	ft_putstr("parse_width?\n");
 	fdf_parse_width(coords, fdf);
-	ft_putstr("_____\n");
 	while (coords[i])
 	{
 		coord_colors = ft_strsplit(coords[i], ',');
@@ -94,9 +86,7 @@ void			fdf_parse_map(int fd, t_main *fdf)
 	line = NULL;
 	while (get_next_line(fd, &line))
 	{
-		ft_putstr("~~~~");
 		coords = ft_strsplit(line, ' ');
-		ft_putstr("~~~~\n");
 		fdf_parse_line(coords, fdf);
 		ft_strdel(line);
 		ft_freechararr(coords);
