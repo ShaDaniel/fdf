@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_freechararr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 21:10:49 by tjonella          #+#    #+#             */
-/*   Updated: 2019/04/20 21:13:55 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/05/13 18:54:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_freechararr(char ***arr)
+void	ft_freechararr(char **arr)
 {
 	int		i;
 
 	i = 0;
-	while ((*arr)[i])
-		free((*arr)[i++]);
-	free(*arr);
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
 }
