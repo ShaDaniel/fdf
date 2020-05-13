@@ -65,7 +65,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 	while (coords[i])
 	{
 		ft_putstr("OK_3?");
-		coord_colors = ft_strsplit(coords[i], ',');
+		coord_colors = strtok(coords[i], ','); ////////
 		ft_putstr("!!!");
 		if (coord_colors[1])
 		{
@@ -98,7 +98,7 @@ void			fdf_parse_map(int fd, t_main *fdf)
 	{
 		ft_putstr(line);
 		ft_putstr("OK_1?");
-		coords = ft_strsplit(line, ' ');
+		coords = strtok(line, ' ');
 		fdf_parse_line(coords, fdf);
 		ft_strdel(line);
 		ft_freechararr(coords);
