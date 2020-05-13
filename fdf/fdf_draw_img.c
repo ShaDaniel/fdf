@@ -24,18 +24,18 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 
 static void	balance_colours(double *red, double *green, double *blue)
 {
-	if (*red < 0.01)
-		*red += 0.02;
-	if (*green < 0.01)
-		*green += 0.02;
-	if (*blue < 0.01)
-		*blue += 0.02;
-	if (*red > 0.99)
-		*red -= 0.02;
-	if (*green > 0.99)
-		*green -= 0.02;
-	if (*blue > 0.99)
-		*blue -= 0.02;
+	if (*red < 0.1)
+		*red += 0.05;
+	if (*green < 0.1)
+		*green += 0.05;
+	if (*blue < 0.1)
+		*blue += 0.05;
+	if (*red > 0.95)
+		*red -= 0.05;
+	if (*green > 0.95)
+		*green -= 0.05;
+	if (*blue > 0.95)
+		*blue -= 0.05;
 }
 
 static int	fdf_colour_get(t_point *p, t_main *fdf)
