@@ -8,7 +8,7 @@ static void	fdf_point_set(t_point *p, size_t x, size_t y, t_main *fdf)
 	p->x = fdf->offset->x + x * DIST_MIN * fdf->map->zoom;
 	p->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
 	p->z = fdf->map->coords[y * fdf->map->width + x] * fdf->map->zscale;
-	p->colour = fdf->map->colours[y * fdf->map->width + x];
+	p->colour_s = (int)fdf->map->colours[y * fdf->map->width + x];
 	if (fdf->iso)
 	{
 		old_x = p->x;
@@ -34,8 +34,8 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 			p->colour_f = WHITE;
 	}
 	colour_step = fdf->map->zoom * DIST_MIN * fdf->map->zscale;
-	red = (p->colour_f >> 16 - p->colour_s >> 16) / colour_step;
-	green = (p->colour_f >> 8 - p->colour_s >> 8) / colour_step;
+	red = ((p->colour_f >> 16) - (p->colour_s >> 16)) / colour_step;
+	green = ((p->colour_f >> 8) - (p->colour_s >> 8)) / colour_step;
 	blue = (p->colour_f - p->colour_s) / colour_step;
 	p->colour_s += red << 16;
 	p->colour_s += green << 8;
@@ -51,7 +51,7 @@ static void fdf_draw_pix(t_point *p, t_main *fdf)
 	if (p->x >= 0 && p->x < WIN_WID && p->y >= 0 && p->y < WIN_HGHT)
 	{
 		index = p->y * fdf->size_line + p->x * (fdf->bits_per_pixel / 8);
-		colour = mlx_get_color_value(fdf->mlx, fdf_colour_get(fdf, p));
+		colour = mlx_get_color_value(fdf->mlx, fdf_colour_get(p, fdf));
 		fdf->data_addr[index] = colour;
 		fdf->data_addr[index + 1] = colour >> 8;
 		fdf->data_addr[index + 2] = colour >> 16;
