@@ -23,20 +23,28 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 
 static int	fdf_colour_get(t_point *p, t_main *fdf)
 {
-	int		colour_step;
-	int		red;
-	int		green;
-	int		blue;
+	double	red_coeff;
+	double	green_coeff;
+	double	blue_coeff;
 
 	if (!p->colour_s)
 		p->colour_s = WHITE;
 	if (!p->colour_f)
 		p->colour_f = WHITE;
-	colour_step = fdf->map->zoom * DIST_MIN;
-	red = (((p->colour_f >> 16) & 0xFF) - ((p->colour_s >> 16) & 0xFF)) / colour_step;
-	green = (((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF)) / colour_step;
-	blue = ((p->colour_f & 0xFF) - (p->colour_s & 0xFF)) / colour_step;
-	p->colour_s += ((red << 16) | (green << 8) | blue);
+
+	red_coeff = (double)(((p->colour_f >> 16) & 0xFF) - ((p->colour_s >> 16) & 0xFF)) / (double)((p->colour_f >> 16) & 0xFF);
+	green_coeff = (double)(((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF)) / (double)((p->colour_f >> 8) & 0xFF);
+	blue_coeff = (double)((p->colour_f & 0xFF) - (p->colour_s & 0xFF)) / (double)(p->colour_f & 0xFF);
+
+	p->colour_s = ((int)(((p->colour_s >> 16) & 0xFF) * (1 - red_coeff)\
+				 + ((p->colour_f >> 16) & 0xFF) * red_coeff) << 16) |\
+				 ((int)(((p->colour_s >> 8) & 0xFF) * (1 - green_coeff)\
+				 + ((p->colour_f >> 8) & 0xFF) * green_coeff) << 8) |\
+				 (int)(((p->colour_s & 0xFF) * (1 - blue_coeff)\
+				 + (p->colour_f & 0xFF) * blue_coeff));
+	//red = (((p->colour_f >> 16) & 0xFF) - ((p->colour_s >> 16) & 0xFF)) / colour_step;
+	//green = (((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF)) / colour_step;
+	//blue = ((p->colour_f & 0xFF) - (p->colour_s & 0xFF)) / colour_step;
 	return (p->colour_s);
 }
 
