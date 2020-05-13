@@ -26,13 +26,10 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	int		green;
 	int		blue;
 
-	if (fdf->map->origin_colour)
-	{
-		if (!p->colour_s)
-			p->colour_s = WHITE;
-		if (!p->colour_f)
-			p->colour_f = WHITE;
-	}
+	if (!p->colour_s)
+		p->colour_s = WHITE;
+	if (!p->colour_f)
+		p->colour_f = WHITE;
 	colour_step = fdf->map->zoom * DIST_MIN * fdf->map->zscale;
 	red = ((p->colour_f >> 16) - (p->colour_s >> 16)) / colour_step;
 	green = ((p->colour_f >> 8) - (p->colour_s >> 8)) / colour_step;
