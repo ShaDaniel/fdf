@@ -3,8 +3,8 @@
 static void		fdf_parse_width(char **coords, t_main *fdf)
 {
 	size_t		i;
-	int			*new_coords;
-	uint32_t	*new_colours;
+	int			*tmp_coords;
+	uint32_t	*tmp_colours;
 
 	i = 0;
 	while (coords[i])
@@ -14,20 +14,20 @@ static void		fdf_parse_width(char **coords, t_main *fdf)
 	else if (fdf->map->width != i)
 		fdf_error(ERECTANG);
 	ft_putstr("wid???");
-	new_coords = (int *)ft_memalloc(fdf->map->total * sizeof(int) + fdf->map->width);
-	new_colours = (uint32_t *)ft_memalloc(fdf->map->total * sizeof(uint32_t) + fdf->map->width);
-	if (!new_coords || !new_colours)
+	tmp_coords = fdf->map->coords;
+	tmp_colours = fdf->map->colours;
+	fdf->map->coords = (int *)ft_memalloc(fdf->map->total * sizeof(int) + fdf->map->width);
+	fdf->map->colours = (uint32_t *)ft_memalloc(fdf->map->total * sizeof(uint32_t) + fdf->map->width);
+	if (!fdf->map->coords || !fdf->map->colours)
 		fdf_error(EMEM);
 	ft_putstr("wid222???");
-	ft_memcpy(new_coords, fdf->map->coords, fdf->map->total * sizeof(int));
-	ft_memcpy(new_colours, fdf->map->colours, fdf->map->total * sizeof(uint32_t));
+	ft_memcpy(fdf->map->coords, tmp_coords, fdf->map->total * sizeof(int));
+	ft_memcpy(fdf->map->colours, tmp_colours, fdf->map->total * sizeof(uint32_t));
 	
 	ft_putstr("wid222****???");
-	free(fdf->map->coords);
-	free(fdf->map->colours);
+	free(tmp_coords);
+	free(tmp_colours);
 	ft_putstr("wid222====");
-	fdf->map->coords = new_coords;
-	fdf->map->colours = new_colours;
 	fdf->map->total += fdf->map->width;
 	ft_putstr("wid333333???");
 }
