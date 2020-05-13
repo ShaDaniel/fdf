@@ -106,13 +106,13 @@ void		fdf_draw_img(t_main *fdf)
 		{
 			if (x < fdf->map->width - 1)
 			{
-				fdf_point_set(p2, NULL, x + 1, y, fdf);
+				fdf_point_set(p2, 0, x + 1, y, fdf);
 				fdf_point_set(p1, 'x', x, y, fdf);
 				fdf_draw_line(p1, p2, fdf);
 			}
 			if (y < fdf->map->height - 1)
 			{
-				fdf_point_set(p2, NULL, x, y + 1, fdf);
+				fdf_point_set(p2, 0, x, y + 1, fdf);
 				fdf_point_set(p1, 'y', x, y, fdf);
 				fdf_draw_line(p1, p2, fdf);
 			}
