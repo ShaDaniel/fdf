@@ -73,6 +73,9 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 		}
 		coord = ft_atoi(coord_colors[0]);
 		fdf->map->coords[fdf->map->height * fdf->map->width + i] = coord;
+		printf("%3d", coord);
+		if (i % 18 == 0)
+			ft_putchar('\n');
 		if (ft_numlen(coord) != ft_strlen(coord_colors[0]))
 			fdf_error(ECOORD);
 		ft_freechararr(&coord_colors);
