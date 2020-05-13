@@ -10,7 +10,7 @@ static void	fdf_point_set(t_point *p, char fin, size_t x, size_t y, t_main *fdf)
 	p->z = fdf->map->coords[y * fdf->map->width + x] * fdf->map->zscale;
 	p->colour_s = (int)fdf->map->colours[y * fdf->map->width + x];
 	if (fin)
-		p->colour_f = (int)fdf->map->colours[(y + fin == 'y' ? 1 : 0) * fdf->map->width + x + fin == 'y' ? 0 : 1];
+		p->colour_f = (int)fdf->map->colours[(y + (fin == 'y' ? 1 : 0)) * fdf->map->width + x + (fin == 'y' ? 0 : 1)];
 	if (fdf->iso)
 	{
 		old_x = p->x;
