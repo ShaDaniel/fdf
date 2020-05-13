@@ -7,11 +7,8 @@ static void		fdf_parse_width(char **coords, t_main *fdf)
 	uint32_t	*new_colours;
 
 	i = 0;
-	while (*coords)
-	{
-		coords++;
+	while (coords[i])
 		i++;
-	}
 	if (fdf->map->height == 0)
 		fdf->map->width = i;
 	else if (fdf->map->width != i)
