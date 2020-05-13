@@ -60,6 +60,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 	int		coord;
 
 	i = 0;
+	printf("OK_2?");
 	fdf_parse_width(coords, fdf);
 	while (coords[i])
 	{
@@ -92,6 +93,7 @@ void			fdf_parse_map(int fd, t_main *fdf)
 	line = NULL;
 	while (get_next_line(fd, &line))
 	{
+		printf("OK_1?");
 		coords = ft_strsplit(line, ' ');
 		fdf_parse_line(coords, fdf);
 		ft_strdel(&line);
