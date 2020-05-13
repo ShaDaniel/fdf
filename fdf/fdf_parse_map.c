@@ -21,8 +21,8 @@ static void		fdf_parse_width(char **coords, t_main *fdf)
 	if (!fdf->map->coords || !fdf->map->colours)
 		fdf_error(EMEM);
 	ft_putstr("wid222???");
-	ft_memcpy(fdf->map->coords, tmp_coords, fdf->map->total * sizeof(int));
-	ft_memcpy(fdf->map->colours, tmp_colours, fdf->map->total * sizeof(uint32_t));
+	//ft_memcpy(fdf->map->coords, tmp_coords, fdf->map->total * sizeof(int));
+	//ft_memcpy(fdf->map->colours, tmp_colours, fdf->map->total * sizeof(uint32_t));
 	
 	ft_putstr("wid222****???");
 	free(tmp_coords);
