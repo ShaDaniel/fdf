@@ -58,6 +58,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 
 	i = 0;
 	fdf_parse_width(coords, fdf);
+	ft_putstr("_____\n");
 	while (coords[i])
 	{
 		coord_colors = ft_strsplit(coords[i], ',');
@@ -86,7 +87,9 @@ void			fdf_parse_map(int fd, t_main *fdf)
 	line = NULL;
 	while (get_next_line(fd, &line))
 	{
+		ft_putstr("~~~~");
 		coords = ft_strsplit(line, ' ');
+		ft_putstr("~~~~\n");
 		fdf_parse_line(coords, fdf);
 		ft_strdel(line);
 		ft_freechararr(coords);
