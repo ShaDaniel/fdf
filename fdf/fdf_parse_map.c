@@ -82,6 +82,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 		if (ft_numlen(coord) != ft_strlen(coord_colors[0]))
 			fdf_error(ECOORD);
 		ft_freechararr(&coord_colors);
+		ft_putstr("FREEEEEEEEE");
 		i++;
 	}
 	fdf->map->height++;
