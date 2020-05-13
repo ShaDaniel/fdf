@@ -45,7 +45,8 @@ typedef struct	s_point
 	int			x;
 	int			y;
 	int			z;
-	uint32_t	colour;
+	int			colour_s;
+	int			colour_f;
 }				t_point;
 
 typedef struct	s_offset

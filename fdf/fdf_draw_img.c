@@ -19,6 +19,30 @@ static void	fdf_point_set(t_point *p, size_t x, size_t y, t_main *fdf)
 	}
 }
 
+static int	fdf_colour_get(t_point *p, t_main *fdf)
+{
+	int		colour_step;
+	int		red;
+	int		green;
+	int		blue;
+
+	if (fdf->map->origin_colour)
+	{
+		if (!p->colour_s)
+			p->colour_s = WHITE;
+		if (!p->colour_f)
+			p->colour_f = WHITE;
+	}
+	colour_step = fdf->map->zoom * DIST_MIN * fdf->map->zscale;
+	red = (p->colour_f >> 16 - p->colour_s >> 16) / colour_step;
+	green = (p->colour_f >> 8 - p->colour_s >> 8) / colour_step;
+	blue = (p->colour_f - p->colour_s) / colour_step;
+	p->colour_s += red << 16;
+	p->colour_s += green << 8;
+	p->colour_s += blue;
+	return (p->colour_s); 
+}
+
 static void fdf_draw_pix(t_point *p, t_main *fdf)
 {
 	size_t		index;
@@ -27,11 +51,10 @@ static void fdf_draw_pix(t_point *p, t_main *fdf)
 	if (p->x >= 0 && p->x < WIN_WID && p->y >= 0 && p->y < WIN_HGHT)
 	{
 		index = p->y * fdf->size_line + p->x * (fdf->bits_per_pixel / 8);
-		//ft_memcpy(&(fdf->data_addr[index]), &colour, 3);
-		colour = mlx_get_color_value(fdf->mlx, WHITE);
-		fdf->data_addr[index] = 100;
-		fdf->data_addr[index + 1] = 100;
-		fdf->data_addr[index + 2] = 100;
+		colour = mlx_get_color_value(fdf->mlx, fdf_colour_get(fdf, p));
+		fdf->data_addr[index] = colour;
+		fdf->data_addr[index + 1] = colour >> 8;
+		fdf->data_addr[index + 2] = colour >> 16;
 	}
 }
 
@@ -51,7 +74,6 @@ static void	fdf_draw_line(t_point *p1, t_point *p2, t_main *fdf)
 	while (p1->x != p2->x || p1->y != p2->y)
 	{
 		fdf_draw_pix(p1, fdf);
-		//mlx_pixel_put(fdf->mlx, fdf->win, p1->x, p1->y, WHITE);
 		err[1] = err[0] * 2;
 		if (err[1] >= -dy)
 		{
