@@ -9,7 +9,7 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	p->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
 	p->z = fdf->map->coords[y * fdf->map->width + x] * fdf->map->zscale;
 	p->colour_s = (int)fdf->map->colours[y * fdf->map->width + x];
-	if (!p->colour_s)
+	if (p->colour_s == 0)
 		p->colour_s = WHITE;
 	ft_putnbr(p->colour_s);
 	if (fin)
