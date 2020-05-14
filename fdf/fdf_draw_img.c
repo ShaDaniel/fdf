@@ -60,7 +60,7 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	{
 		printf("\n%i %i %f\n", ((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), red_coeff);
 	}
-	p->colour_curr += (int)(red_coeff * p->clr_growth) << 16 |\
+	p->colour_curr += ((int)(red_coeff * p->clr_growth) << 16 |\
 					(int)(green_coeff * p->clr_growth) << 8 |\
 				 	(int)(blue_coeff * p->clr_growth));
 	//colour = ((int)(((p->colour_s >> 16) & 0xFF) * red_coeff\
