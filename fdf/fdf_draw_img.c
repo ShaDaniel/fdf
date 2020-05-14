@@ -65,17 +65,23 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	if (p->colour_f != p->colour_s)
 	{
 		if (red_coeff > 0)
-			p->colour_curr += ((int)(red_coeff * p->clr_growth) << 16) > 0 ? ((int)(red_coeff * p->clr_growth) << 16) : 1;
+			p->colour_curr += (((int)(red_coeff * p->clr_growth) << 16) > 0) ?\
+			 ((int)(red_coeff * p->clr_growth) << 16) : 1 - ((p->colour_curr >> 16) & 0xFF >= (p->colour_f >> 16) & 0xFF);
 		else
-			p->colour_curr -= ((int)(red_coeff * p->clr_growth) << 16) != 0 ? ((int)(red_coeff * p->clr_growth) << 16) : 1;
+			p->colour_curr -= ((int)(red_coeff * p->clr_growth) << 16) != 0 ?\
+			 ((int)(red_coeff * p->clr_growth) << 16) : 1 - ((p->colour_curr >> 16) & 0xFF <= (p->colour_s >> 16) & 0xFF);
 		if (green_coeff > 0)
-			p->colour_curr += ((int)(green_coeff * p->clr_growth) << 8) > 0 ? ((int)(green_coeff * p->clr_growth) << 8) : 1;
+			p->colour_curr += ((int)(green_coeff * p->clr_growth) << 8) > 0 ?\
+			 ((int)(green_coeff * p->clr_growth) << 8) : 1 - ((p->colour_curr >> 8) & 0xFF >= (p->colour_s >> 8) & 0xFF);
 		else
-			p->colour_curr -= ((int)(green_coeff * p->clr_growth) << 8) != 0 ? ((int)(green_coeff * p->clr_growth) << 8) : 1;
+			p->colour_curr -= ((int)(green_coeff * p->clr_growth) << 8) != 0 ?\
+			 ((int)(green_coeff * p->clr_growth) << 8) : 1 - ((p->colour_curr >> 8) & 0xFF <= (p->colour_s >> 8) & 0xFF);
 		if (blue_coeff > 0)
-			p->colour_curr += ((int)(blue_coeff * p->clr_growth)) > 0 ? ((int)(blue_coeff * p->clr_growth)) : 1;
+			p->colour_curr += ((int)(blue_coeff * p->clr_growth)) > 0 ?\
+			 ((int)(blue_coeff * p->clr_growth)) : 1 - ((p->colour_curr) & 0xFF >= (p->colour_s) & 0xFF);
 		else
-			p->colour_curr -= ((int)(blue_coeff * p->clr_growth)) != 0 ? ((int)(blue_coeff * p->clr_growth)) : 1;
+			p->colour_curr -= ((int)(blue_coeff * p->clr_growth)) != 0 ?\
+			 ((int)(blue_coeff * p->clr_growth)) : 1 - ((p->colour_curr) & 0xFF <= (p->colour_s) & 0xFF);
 	}
 	/*p->colour_curr += ((int)(red_coeff * p->clr_growth) << 16 |\
 					(int)(green_coeff * p->clr_growth) << 8 |\
