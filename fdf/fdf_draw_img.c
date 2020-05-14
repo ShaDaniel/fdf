@@ -26,7 +26,7 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	p->colour_curr = ((ft_min((p->colour_s >> 16) & 0xFF, (p->colour_f >> 16) & 0xFF) << 16) |\
 					(ft_min((p->colour_s >> 8) & 0xFF, (p->colour_f >> 8) & 0xFF) << 8) |\
 					(ft_min((p->colour_s) & 0xFF, (p->colour_f) & 0xFF)));
-	if (x == 0 && y == 0)
+	if (x == 2 && y == 3)
 		ft_putnbr(p->colour_curr);
 }
 
