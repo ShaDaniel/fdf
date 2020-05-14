@@ -11,6 +11,8 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	p->colour_s = fdf->map->colours[y * fdf->map->width + x] & 0xFFFFFF;
 	if (x == 0 && y == 0)
 		ft_putnbr(p->colour_s);
+	if (!p->colour_s)
+		p->colour_s = WHITE;
 	if (fin)
 		p->colour_f = fin->colour_s;
 	if (fdf->iso)
