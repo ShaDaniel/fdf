@@ -51,13 +51,13 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 		weight = 0.2;
 	else
 		weight = 0;
-	printf("%f\n", weight);
 	if (!p->colour_f)
 		p->colour_f = WHITE;
 	red = balance_colours(((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), weight);
 	green = balance_colours(((p->colour_f >> 8) & 0xFF),  ((p->colour_s >> 8) & 0xFF), weight);
 	blue = balance_colours((p->colour_f & 0xFF), (p->colour_s & 0xFF), weight);
 	p->curr_growth += p->clr_growth;
+	printf("%f\n", p->curr_growth);
 	return ((red << 16) | (green << 8) | blue);
 }
 
