@@ -46,7 +46,7 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	else if (p->curr_growth >= 0.5)
 		weight = 0.6;
 	else if (p->curr_growth >= 0.3)
-		weight = 0.4
+		weight = 0.4;
 	else if (p->curr_growth >= 0.1)
 		weight = 0.2;
 	else
