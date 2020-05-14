@@ -1,6 +1,18 @@
 #include "fdf.h"
 
-int		keyboard_hook(int keycode, void *param)
+static void	arrows_move(t_main *fdf, int keycode)
+{
+	if (keycode == KEY_UP)
+		fdf->offset->y -= 10;
+	else if (keycode == KEY_DOWN)
+		fdf->offset->y += 10;
+	else if (keycode == KEY_LEFT)
+		fdf->offset->x -= 10;
+	else if (keycode == KEY_RIGHT)
+		fdf->offset->x += 10;
+}
+
+int			keyboard_hook(int keycode, void *param)
 {
 	t_main *fdf;
 
@@ -11,14 +23,8 @@ int		keyboard_hook(int keycode, void *param)
 		fdf->iso = 1;
 	else if (keycode == KEY_P)
 		fdf->iso = 0;
-	else if (keycode == KEY_UP)
-		fdf->offset->y -= 10;
-	else if (keycode == KEY_DOWN)
-		fdf->offset->y += 10;
-	else if (keycode == KEY_LEFT)
-		fdf->offset->x -= 10;
-	else if (keycode == KEY_RIGHT)
-		fdf->offset->x += 10;
+	else if (keycode == KEY_DOWN || KEY_UP || KEY_RIGHT || KEY_LEFT)
+		arrows_move(fdf, keycode);
 	else if (keycode == KEY_LBRK && fdf->map->zoom > 1)
 		fdf->map->zoom--;
 	else if (keycode == KEY_RBRK && fdf->map->zoom < 40)
@@ -27,7 +33,8 @@ int		keyboard_hook(int keycode, void *param)
 		fdf->map->zscale++;
 	else if (keycode == KEY_X && fdf->map->zscale > -20)
 		fdf->map->zscale--;
-	
+	else
+		return (0);
 	ft_memset(fdf->data_addr, 0, fdf->size_line * WIN_HGHT);
 	fdf_draw_img(fdf);
 	return (0);
