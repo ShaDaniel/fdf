@@ -48,9 +48,9 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 		p->colour_s = WHITE;
 	if (!p->colour_f)
 		p->colour_f = WHITE;
-	red_coeff = ((p->colour_f >> 16) & 0xFF) > ((p->colour_s >> 16) & 0xFF) ? 0.75 + 0.01 * fdf->map->zoom : 0.25 - 0.01 * fdf->zoom;
-	green_coeff = ((p->colour_f >> 8) & 0xFF) > ((p->colour_s >> 8) & 0xFF) ? 0.75 + 0.01 * fdf->map->zoom : 0.25 - 0.01 * fdf->zoom;
-	blue_coeff = (p->colour_f & 0xFF) > (p->colour_s & 0xFF) ? 0.75 + 0.01 * fdf->map->zoom : 0.25 - 0.01 * fdf->zoom;
+	red_coeff = ((p->colour_f >> 16) & 0xFF) > ((p->colour_s >> 16) & 0xFF) ? 0.75 + 0.01 * fdf->map->zoom : 0.25 - 0.01 * fdf->map->zoom;
+	green_coeff = ((p->colour_f >> 8) & 0xFF) > ((p->colour_s >> 8) & 0xFF) ? 0.75 + 0.01 * fdf->map->zoom : 0.25 - 0.01 * fdf->map->zoom;
+	blue_coeff = (p->colour_f & 0xFF) > (p->colour_s & 0xFF) ? 0.75 + 0.01 * fdf->map->zoom : 0.25 - 0.01 * fdf->map->zoom;
 	//balance_colours(&red_coeff, &green_coeff, &blue_coeff);
 	if (p->colour_f == WHITE)
 	{
