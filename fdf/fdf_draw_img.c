@@ -59,10 +59,10 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	green_coeff = ft_abs(((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF));
 	blue_coeff = ft_abs((p->colour_f & 0xFF) - (p->colour_s & 0xFF));
 	//balance_colours(&red_coeff, &green_coeff, &blue_coeff);
-	if (p->colour_f == WHITE)
-	{
-		printf("\n%i %i %f\n", ((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), red_coeff);
-	}
+	//if (p->colour_f == WHITE)
+	//{
+	//	printf("\n%i %i %f\n", ((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), red_coeff);
+	//}
 	p->colour_curr += ((int)(red_coeff * p->clr_growth < 1.0 ? 1.0 : red_coeff * p->clr_growth) << 16 |\
 					(int)(green_coeff * p->clr_growth < 1.0 ? 1.0 : green_coeff * p->clr_growth) << 8 |\
 				 	(int)(blue_coeff * p->clr_growth < 1.0 ? 1.0 : blue_coeff * p->clr_growth));
