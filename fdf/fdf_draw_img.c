@@ -62,19 +62,21 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	//{
 	//	printf("\n%i %i %f\n", ((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), red_coeff);
 	//}
-	if (red_coeff > 0)
-		p->colour_curr += ((int)(red_coeff * p->clr_growth) << 16) > 0 ? ((int)(red_coeff * p->clr_growth) << 16) : 1;
-	else
-		p->colour_curr -= ((int)(red_coeff * p->clr_growth) << 16) != 0 ? ((int)(red_coeff * p->clr_growth) << 16) : 1;
-	if (green_coeff > 0)
-		p->colour_curr += ((int)(green_coeff * p->clr_growth) << 8) > 0 ? ((int)(green_coeff * p->clr_growth) << 8) : 1;
-	else
-		p->colour_curr -= ((int)(green_coeff * p->clr_growth) << 8) != 0 ? ((int)(green_coeff * p->clr_growth) << 8) : 1;
-	if (blue_coeff > 0)
-		p->colour_curr += ((int)(blue_coeff * p->clr_growth)) > 0 ? ((int)(blue_coeff * p->clr_growth)) : 1;
-	else
-		p->colour_curr -= ((int)(blue_coeff * p->clr_growth)) != 0 ? ((int)(blue_coeff * p->clr_growth)) : 1;
-	
+	if (p->colour_f != p->colour_s)
+	{
+		if (red_coeff > 0)
+			p->colour_curr += ((int)(red_coeff * p->clr_growth) << 16) > 0 ? ((int)(red_coeff * p->clr_growth) << 16) : 1;
+		else
+			p->colour_curr -= ((int)(red_coeff * p->clr_growth) << 16) != 0 ? ((int)(red_coeff * p->clr_growth) << 16) : 1;
+		if (green_coeff > 0)
+			p->colour_curr += ((int)(green_coeff * p->clr_growth) << 8) > 0 ? ((int)(green_coeff * p->clr_growth) << 8) : 1;
+		else
+			p->colour_curr -= ((int)(green_coeff * p->clr_growth) << 8) != 0 ? ((int)(green_coeff * p->clr_growth) << 8) : 1;
+		if (blue_coeff > 0)
+			p->colour_curr += ((int)(blue_coeff * p->clr_growth)) > 0 ? ((int)(blue_coeff * p->clr_growth)) : 1;
+		else
+			p->colour_curr -= ((int)(blue_coeff * p->clr_growth)) != 0 ? ((int)(blue_coeff * p->clr_growth)) : 1;
+	}
 	/*p->colour_curr += ((int)(red_coeff * p->clr_growth) << 16 |\
 					(int)(green_coeff * p->clr_growth) << 8 |\
 				 	(int)(blue_coeff * p->clr_growth));*/
