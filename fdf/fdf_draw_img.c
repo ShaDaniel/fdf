@@ -23,7 +23,7 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 		p->y = (old_x + old_y) * sin(0.8) - p->z;
 	}
 	if (fin)
-		p->clr_growth = 1 / sqrt(fin->x * fin->x + fin->y * fin->y);
+		p->clr_growth = 1 / (DIST_MIN * fdf->map->zoom);
 	p->curr_growth = 0;
 }
 
