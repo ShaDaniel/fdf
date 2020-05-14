@@ -45,7 +45,9 @@ typedef struct	s_point
 	int			x;
 	int			y;
 	int			z;
+	double		clr_growth;
 	int			colour_s;
+	int			colour_curr;
 	int			colour_f;
 }				t_point;
 
