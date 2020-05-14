@@ -23,9 +23,7 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	}
 	if (fin)
 		p->clr_growth = 1 / sqrt(fin->x * fin->x + fin->y * fin->y) / fdf->map->zoom;
-	p->colour_curr = ((ft_min((p->colour_s >> 16) & 0xFF, (p->colour_f >> 16) & 0xFF) << 16) |\
-					(ft_min((p->colour_s >> 8) & 0xFF, (p->colour_f >> 8) & 0xFF) << 8) |\
-					(ft_min((p->colour_s) & 0xFF, (p->colour_f) & 0xFF)));
+	p->colour_curr = p->colour_s;
 	if (x == 2 && y == 3)
 		ft_putnbr(p->colour_curr);
 }
@@ -55,17 +53,30 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 
 	if (!p->colour_f)
 		p->colour_f = WHITE;
-	red_coeff = ft_abs(((p->colour_f >> 16) & 0xFF) - ((p->colour_s >> 16) & 0xFF));
-	green_coeff = ft_abs(((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF));
-	blue_coeff = ft_abs((p->colour_f & 0xFF) - (p->colour_s & 0xFF));
+	red_coeff = ((p->colour_f >> 16) & 0xFF) - ((p->colour_s >> 16) & 0xFF);
+	green_coeff = ((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF);
+	blue_coeff = (p->colour_f & 0xFF) - (p->colour_s & 0xFF);
 	//balance_colours(&red_coeff, &green_coeff, &blue_coeff);
 	//if (p->colour_f == WHITE)
 	//{
 	//	printf("\n%i %i %f\n", ((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), red_coeff);
 	//}
-	p->colour_curr += ((int)(red_coeff * p->clr_growth) << 16 |\
+	if (red_coeff > 0)
+		p->colour_curr += ((int)(red_coeff * p->clr_growth) << 16);
+	else
+		p->colour_curr -= ((int)(red_coeff * p->clr_growth) << 16);
+	if (green_coeff > 0)
+		p->colour_curr += ((int)(green_coeff * p->clr_growth) << 8);
+	else
+		p->colour_curr -= ((int)(green_coeff * p->clr_growth) << 8);
+	if (blue_coeff > 0)
+		p->colour_curr += ((int)(blue_coeff * p->clr_growth));
+	else
+		p->colour_curr -= ((int)(blue_coeff * p->clr_growth));
+	
+	/*p->colour_curr += ((int)(red_coeff * p->clr_growth) << 16 |\
 					(int)(green_coeff * p->clr_growth) << 8 |\
-				 	(int)(blue_coeff * p->clr_growth));
+				 	(int)(blue_coeff * p->clr_growth));*/
 	//colour = ((int)(((p->colour_s >> 16) & 0xFF) * red_coeff\
 	//			 + ((p->colour_f >> 16) & 0xFF) * (1 - red_coeff)) << 16) |\
 	//			 ((int)(((p->colour_s >> 8) & 0xFF) * green_coeff\
