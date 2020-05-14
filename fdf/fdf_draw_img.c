@@ -48,20 +48,20 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 		p->colour_s = WHITE;
 	if (!p->colour_f)
 		p->colour_f = WHITE;
-	red_coeff = (double)(((p->colour_f >> 16) & 0xFF) - ((p->colour_s >> 16) & 0xFF)) / (double)((p->colour_f >> 16) & 0xFF);
-	green_coeff = (double)(((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF)) / (double)((p->colour_f >> 8) & 0xFF);
-	blue_coeff = (double)((p->colour_f & 0xFF) - (p->colour_s & 0xFF)) / (double)(p->colour_f & 0xFF);
-	balance_colours(&red_coeff, &green_coeff, &blue_coeff);
+	red_coeff = ((p->colour_f >> 16) & 0xFF) > ((p->colour_s >> 16) & 0xFF) ? 0.75 + 0.01 * fdf->map->zoom : 0.25 - 0.01 * fdf->zoom;
+	green_coeff = ((p->colour_f >> 8) & 0xFF) > ((p->colour_s >> 8) & 0xFF) ? 0.75 + 0.01 * fdf->map->zoom : 0.25 - 0.01 * fdf->zoom;
+	blue_coeff = (p->colour_f & 0xFF) > (p->colour_s & 0xFF) ? 0.75 + 0.01 * fdf->map->zoom : 0.25 - 0.01 * fdf->zoom;
+	//balance_colours(&red_coeff, &green_coeff, &blue_coeff);
 	if (p->colour_f == WHITE)
 	{
 		printf("\n%i %i %f\n", ((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), red_coeff);
 	}
-	p->colour_s = ((int)(((p->colour_s >> 16) & 0xFF) * 0.9\
-				 + ((p->colour_f >> 16) & 0xFF) * 0.1) << 16) |\
-				 ((int)(((p->colour_s >> 8) & 0xFF) * 0.9\
-				 + ((p->colour_f >> 8) & 0xFF) * 0.1) << 8) |\
-				 (int)(((p->colour_s & 0xFF) * 0.9\
-				 + (p->colour_f & 0xFF) * 0.1));
+	p->colour_s = ((int)(((p->colour_s >> 16) & 0xFF) * red_coeff\
+				 + ((p->colour_f >> 16) & 0xFF) * (1 - red_coeff)) << 16) |\
+				 ((int)(((p->colour_s >> 8) & 0xFF) * green_coeff\
+				 + ((p->colour_f >> 8) & 0xFF) * (1 - green_coeff)) << 8) |\
+				 (int)(((p->colour_s & 0xFF) * blue_coeff\
+				 + (p->colour_f & 0xFF) * (1 - blue_coeff)));
 	//p->colour_s = ((int)(((p->colour_s >> 16) & 0xFF) * red_coeff\
 	//			 + ((p->colour_f >> 16) & 0xFF) * (1 - red_coeff)) << 16) |\
 	//			 ((int)(((p->colour_s >> 8) & 0xFF) * green_coeff\
