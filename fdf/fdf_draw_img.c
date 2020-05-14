@@ -51,6 +51,7 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 		weight = 0.2;
 	else
 		weight = 0;
+	ft_printf("%f\n", weight);
 	if (!p->colour_f)
 		p->colour_f = WHITE;
 	red = balance_colours(((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), weight);
