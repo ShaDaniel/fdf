@@ -1,5 +1,13 @@
 #include "fdf.h"
 
+static void		fdf_min_max_z(int coord, t_main *fdf)
+{
+	if (coord < fdf->map->min)
+		fdf->map->min = coord;
+	if (coord > fdf->map->max)
+		fdf->map->max = coord;
+}
+
 static void		fdf_parse_width(char **coords, t_main *fdf)
 {
 	size_t		i;
@@ -70,6 +78,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 		}
 		coord = ft_atoi(coord_colors[0]);
 		fdf->map->coords[fdf->map->height * fdf->map->width + i] = coord;
+		fdf_min_max_z(coord, fdf);
 		if (ft_numlen(coord) != ft_strlen(coord_colors[0]))
 			fdf_error(ECOORD);
 		ft_freechararr(coord_colors);
