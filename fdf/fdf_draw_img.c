@@ -22,7 +22,9 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	}
 	if (fin)
 		p->clr_growth = 1 / sqrt(fin->x * fin->x + fin->y * fin->y);
-	p->colour_curr = p->colour_s;
+	p->colour_curr = ((ft_min((p->colour_f >> 16) & 0xFF, (p->colour_f >> 16) & 0xFF) << 16) |\
+					(ft_min((p->colour_f >> 8) & 0xFF, (p->colour_f >> 8) & 0xFF) << 8) |\
+					(ft_min((p->colour_f) & 0xFF, (p->colour_f) & 0xFF)));
 }
 
 static void	balance_colours(double *red, double *green, double *blue)
@@ -52,9 +54,9 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 		p->colour_s = WHITE;
 	if (!p->colour_f)
 		p->colour_f = WHITE;
-	red_coeff = ((p->colour_f >> 16) & 0xFF) - ((p->colour_s >> 16) & 0xFF);
-	green_coeff = ((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF);
-	blue_coeff = (p->colour_f & 0xFF) - (p->colour_s & 0xFF);
+	red_coeff = ft_abs(((p->colour_f >> 16) & 0xFF) - ((p->colour_s >> 16) & 0xFF));
+	green_coeff = ft_abs(((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF));
+	blue_coeff = ft_abs((p->colour_f & 0xFF) - (p->colour_s & 0xFF));
 	//balance_colours(&red_coeff, &green_coeff, &blue_coeff);
 	if (p->colour_f == WHITE)
 	{

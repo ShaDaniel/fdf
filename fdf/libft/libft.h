@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 20:19:43 by tjonella          #+#    #+#             */
-/*   Updated: 2020/05/13 19:10:50 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/14 04:51:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void			ft_freechararr(char **arr);
 size_t			ft_numlen(int n);
 char			*ft_strnjoin(char const *s1, char const *s2, size_t n);
 char			*ft_strndup(const char *s1, size_t n);
+int				ft_min(int n1, int n2);
 
 #endif
