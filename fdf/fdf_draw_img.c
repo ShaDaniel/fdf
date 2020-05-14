@@ -9,8 +9,6 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	p->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
 	p->z = fdf->map->coords[y * fdf->map->width + x] * fdf->map->zscale;
 	p->colour_s = fdf->map->colours[y * fdf->map->width + x] & 0xFFFFFF;
-	if (x == 0 && y == 0)
-		ft_putnbr(p->colour_s);
 	if (!p->colour_s)
 		p->colour_s = WHITE;
 	if (fin)
@@ -28,6 +26,8 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	p->colour_curr = ((ft_min((p->colour_f >> 16) & 0xFF, (p->colour_f >> 16) & 0xFF) << 16) |\
 					(ft_min((p->colour_f >> 8) & 0xFF, (p->colour_f >> 8) & 0xFF) << 8) |\
 					(ft_min((p->colour_f) & 0xFF, (p->colour_f) & 0xFF)));
+	if (x == 0 && y == 0)
+		ft_putnbr(p->colour_curr);
 }
 
 static void	balance_colours(double *red, double *green, double *blue)
