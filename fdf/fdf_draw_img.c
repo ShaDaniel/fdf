@@ -24,81 +24,40 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	}
 	if (fin)
 		p->clr_growth = 1 / sqrt(fin->x * fin->x + fin->y * fin->y);
-	p->colour_curr = p->colour_s;
-	if (x == 2 && y == 3)
-		ft_putnbr(p->colour_curr);
+	p->curr_growth = 0;
 }
 
-static void	balance_colours(double *red, double *green, double *blue)
+static int	balance_colours(int c1, int c2, float weight)
 {
-	if (*red < 0.1)
-		*red += 0.05;
-	if (*green < 0.1)
-		*green += 0.05;
-	if (*blue < 0.1)
-		*blue += 0.05;
-	if (*red > 0.9)
-		*red -= 0.05;
-	if (*green > 0.9)
-		*green -= 0.05;
-	if (*blue > 0.9)
-		*blue -= 0.05;
+	return (c1 * weight + c2 * (1 - weight));
 }
 
 static int	fdf_colour_get(t_point *p, t_main *fdf)
 {
-	double	red_coeff;
-	double	green_coeff;
-	double	blue_coeff;
-	int		colour;
+	int		red;
+	int		green;
+	int		blue;
+	float	weight;
 
+	if (p->curr_growth >= 0.9)
+		weight = 1.0;
+	else if (p->curr_growth >= 0.7)
+		weight = 0.8;
+	else if (p->curr_growth >= 0.5)
+		weight = 0.6;
+	else if (p->curr_growth >= 0.3)
+		weight = 0.4
+	else if (p->curr_growth >= 0.1)
+		weight = 0.2;
+	else
+		weight = 0;
 	if (!p->colour_f)
 		p->colour_f = WHITE;
-	red_coeff = ((p->colour_f >> 16) & 0xFF) - ((p->colour_s >> 16) & 0xFF);
-	green_coeff = ((p->colour_f >> 8) & 0xFF) - ((p->colour_s >> 8) & 0xFF);
-	blue_coeff = (p->colour_f & 0xFF) - (p->colour_s & 0xFF);
-	//balance_colours(&red_coeff, &green_coeff, &blue_coeff);
-	//if (p->colour_f == WHITE)
-	//{
-	//	printf("\n%i %i %f\n", ((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), red_coeff);
-	//}
-	if (p->colour_f != p->colour_s)
-	{
-		if (red_coeff > 0)
-			p->colour_curr += (((int)(red_coeff * p->clr_growth) << 16) > 0) ?\
-			 ((int)(red_coeff * p->clr_growth) << 16) : (1 - (((p->colour_curr >> 16) & 0xFF) >= ((p->colour_f >> 16) & 0xFF))) << 16;
-		else
-			p->colour_curr -= ((int)(red_coeff * p->clr_growth) << 16) != 0 ?\
-			 ((int)(red_coeff * p->clr_growth) << 16) : (1 - (((p->colour_curr >> 16) & 0xFF) <= ((p->colour_f >> 16) & 0xFF))) << 16;
-		if (green_coeff > 0)
-			p->colour_curr += ((int)(green_coeff * p->clr_growth) << 8) > 0 ?\
-			 ((int)(green_coeff * p->clr_growth) << 8) : (1 - (((p->colour_curr >> 8) & 0xFF) >= ((p->colour_f >> 8) & 0xFF))) << 8;
-		else
-			p->colour_curr -= ((int)(green_coeff * p->clr_growth) << 8) != 0 ?\
-			 ((int)(green_coeff * p->clr_growth) << 8) : (1 - (((p->colour_curr >> 8) & 0xFF) <= ((p->colour_f >> 8) & 0xFF))) << 8;
-		if (blue_coeff > 0)
-			p->colour_curr += ((int)(blue_coeff * p->clr_growth)) > 0 ?\
-			 ((int)(blue_coeff * p->clr_growth)) : 1 - (((p->colour_curr) & 0xFF) >= ((p->colour_f) & 0xFF));
-		else
-			p->colour_curr -= ((int)(blue_coeff * p->clr_growth)) != 0 ?\
-			 ((int)(blue_coeff * p->clr_growth)) : 1 - (((p->colour_curr) & 0xFF) <= ((p->colour_f) & 0xFF));
-	}
-	/*p->colour_curr += ((int)(red_coeff * p->clr_growth) << 16 |\
-					(int)(green_coeff * p->clr_growth) << 8 |\
-				 	(int)(blue_coeff * p->clr_growth));*/
-	//colour = ((int)(((p->colour_s >> 16) & 0xFF) * red_coeff\
-	//			 + ((p->colour_f >> 16) & 0xFF) * (1 - red_coeff)) << 16) |\
-	//			 ((int)(((p->colour_s >> 8) & 0xFF) * green_coeff\
-	//			 + ((p->colour_f >> 8) & 0xFF) * (1 - green_coeff)) << 8) |\
-	//			 (int)(((p->colour_s & 0xFF) * blue_coeff\
-	//			 + (p->colour_f & 0xFF) * (1 - blue_coeff)));
-	//p->colour_s = ((int)(((p->colour_s >> 16) & 0xFF) * red_coeff\
-	//			 + ((p->colour_f >> 16) & 0xFF) * (1 - red_coeff)) << 16) |\
-	//			 ((int)(((p->colour_s >> 8) & 0xFF) * green_coeff\
-	//			 + ((p->colour_f >> 8) & 0xFF) * (1 - green_coeff)) << 8) |\
-	//			 (int)(((p->colour_s & 0xFF) * blue_coeff\
-	//			 + (p->colour_f & 0xFF) * (1 - blue_coeff)));
-	return (p->colour_curr);
+	red = balance_colours(((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), weight);
+	green = balance_colours(((p->colour_f >> 8) & 0xFF),  ((p->colour_s >> 8) & 0xFF), weight);
+	blue = balance_colours((p->colour_f & 0xFF), (p->colour_s & 0xFF), weight);
+	p->curr_growth += p->clr_growth;
+	return ((red << 16) | (green << 8) | blue);
 }
 
 static void fdf_draw_pix(t_point *p, t_main *fdf)
