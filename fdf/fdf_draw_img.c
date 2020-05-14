@@ -27,8 +27,32 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 	p->curr_growth = 0;
 }
 
-static int	balance_colours(int c1, int c2, float weight)
+static int	balance_colours(int c1, int c2, double growth)
 {
+	double weight;
+
+	if (growth >= 0.95)
+		weight = 1.0;
+	else if (growth >= 0.85)
+		weight = 0.9;
+	else if (growth >= 0.75)
+		weight = 0.8;
+	else if (growth >= 0.65)
+		weight = 0.7;
+	else if (growth >= 0.55)
+		weight = 0.6;
+	else if (growth >= 0.45)
+		weight = 0.5;
+	else if (growth >= 0.35)
+		weight = 0.4;
+	else if (growth >= 0.25)
+		weight = 0.3;
+	else if (growth >= 0.15)
+		weight = 0.2;
+	else if (growth >= 0.05)
+		weight = 0.1;
+	else
+		weight = 0;
 	return ((int)(c1 * weight + c2 * (1 - weight)));
 }
 
@@ -39,25 +63,12 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	int		blue;
 	float	weight;
 
-	if (p->curr_growth >= 0.9)
-		weight = 1.0;
-	else if (p->curr_growth >= 0.7)
-		weight = 0.8;
-	else if (p->curr_growth >= 0.5)
-		weight = 0.6;
-	else if (p->curr_growth >= 0.3)
-		weight = 0.4;
-	else if (p->curr_growth >= 0.1)
-		weight = 0.2;
-	else
-		weight = 0;
 	if (!p->colour_f)
 		p->colour_f = WHITE;
-	red = balance_colours(((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), weight);
-	green = balance_colours(((p->colour_f >> 8) & 0xFF),  ((p->colour_s >> 8) & 0xFF), weight);
-	blue = balance_colours((p->colour_f & 0xFF), (p->colour_s & 0xFF), weight);
+	red = balance_colours(((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), p->curr_growth);
+	green = balance_colours(((p->colour_f >> 8) & 0xFF),  ((p->colour_s >> 8) & 0xFF), p->curr_growth);
+	blue = balance_colours((p->colour_f & 0xFF), (p->colour_s & 0xFF), p->curr_growth);
 	p->curr_growth += p->clr_growth;
-	printf("%f\n", p->curr_growth);
 	return ((red << 16) | (green << 8) | blue);
 }
 
