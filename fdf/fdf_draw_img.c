@@ -29,7 +29,7 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 
 static int	balance_colours(int c1, int c2, float weight)
 {
-	return (c1 * weight + c2 * (1 - weight));
+	return ((int)(c1 * weight + c2 * (1 - weight)));
 }
 
 static int	fdf_colour_get(t_point *p, t_main *fdf)
