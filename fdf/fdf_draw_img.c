@@ -23,7 +23,7 @@ static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *
 		p->y = (old_x + old_y) * sin(0.8) - p->z;
 	}
 	if (fin)
-		p->clr_growth = 1 / sqrt(fin->x * fin->x + fin->y * fin->y);
+		p->clr_growth = 1 / sqrt(fin->x * fin->x + fin->y * fin->y) / fdf->map->zoom;
 	p->colour_curr = ((ft_min((p->colour_f >> 16) & 0xFF, (p->colour_f >> 16) & 0xFF) << 16) |\
 					(ft_min((p->colour_f >> 8) & 0xFF, (p->colour_f >> 8) & 0xFF) << 8) |\
 					(ft_min((p->colour_f) & 0xFF, (p->colour_f) & 0xFF)));
