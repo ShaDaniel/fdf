@@ -56,12 +56,18 @@ static int	fdf_colour_get(t_point *p, t_main *fdf)
 	{
 		printf("\n%i %i %f\n", ((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), red_coeff);
 	}
-	p->colour_s = ((int)(((p->colour_s >> 16) & 0xFF) * red_coeff\
-				 + ((p->colour_f >> 16) & 0xFF) * (1 - red_coeff)) << 16) |\
-				 ((int)(((p->colour_s >> 8) & 0xFF) * green_coeff\
-				 + ((p->colour_f >> 8) & 0xFF) * (1 - green_coeff)) << 8) |\
-				 (int)(((p->colour_s & 0xFF) * blue_coeff\
-				 + (p->colour_f & 0xFF) * (1 - blue_coeff)));
+	p->colour_s = ((int)(((p->colour_s >> 16) & 0xFF) * 0.9\
+				 + ((p->colour_f >> 16) & 0xFF) * 0.1) << 16) |\
+				 ((int)(((p->colour_s >> 8) & 0xFF) * 0.9\
+				 + ((p->colour_f >> 8) & 0xFF) * 0.1) << 8) |\
+				 (int)(((p->colour_s & 0xFF) * 0.9\
+				 + (p->colour_f & 0xFF) * 0.1));
+	//p->colour_s = ((int)(((p->colour_s >> 16) & 0xFF) * red_coeff\
+	//			 + ((p->colour_f >> 16) & 0xFF) * (1 - red_coeff)) << 16) |\
+	//			 ((int)(((p->colour_s >> 8) & 0xFF) * green_coeff\
+	//			 + ((p->colour_f >> 8) & 0xFF) * (1 - green_coeff)) << 8) |\
+	//			 (int)(((p->colour_s & 0xFF) * blue_coeff\
+	//			 + (p->colour_f & 0xFF) * (1 - blue_coeff)));
 	return (p->colour_s);
 }
 
