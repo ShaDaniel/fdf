@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-static voic	set_default_values(t_main *fdf)
+static void	set_default_values(t_main *fdf)
 {
 	fdf->offset->x = 100;
 	fdf->offset->y = 100;
