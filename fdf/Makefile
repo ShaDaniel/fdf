@@ -14,7 +14,6 @@ DIR_SRC = src/
 DIR_OBJ = obj/
 
 LIBFT = 	libft.a
-MLX = 
 DIR_LIBFT =	./libft/
 DIR_MLX = ./minilibx_macos/
 
@@ -35,7 +34,7 @@ $(DIR_OBJ)%.o: $(DIR_SRC)%.c $(HEADERS)
 	gcc $(CFLAGS) -c $< -o $@
 
 $(NAME): $(LIBFT) mlx $(DIR_OBJ) $(OBJ)
-	gcc -o $(NAME) $(DIR_OBJ)$(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit
+	gcc -o $(NAME) $(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit
 
 clean:
 	rm -rf $(DIR_OBJ)
