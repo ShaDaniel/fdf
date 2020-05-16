@@ -38,7 +38,7 @@ $(NAME): $(LIBFT) mlx $(DIR_OBJ) $(OBJ)
 	gcc -o $(NAME) $(DIR_OBJ)$(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit
 
 clean:
-	rm -f $(DIR_OBJ)
+	rm -rf $(DIR_OBJ)
 	make clean -C $(DIR_LIBFT)
 	make clean -C $(DIR_MLX)
 
