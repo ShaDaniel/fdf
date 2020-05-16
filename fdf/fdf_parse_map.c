@@ -39,7 +39,7 @@ static uint32_t	fdf_parse_colour(char *clr)
 	uint32_t	colour;
 
 	colour = 0;
-	if (!clr[0] || !clr[1] || clr[0] != '0' || clr[1] != 'x' || !clr[2])
+	if (!clr[0] || !clr[1] || clr[0] != '0' || clr[1] != 'x' || !clr[2] || ft_strlen(clr) > 8)
 		fdf_error(ECOLOUR);
 	clr += 2;
 	while (*clr)

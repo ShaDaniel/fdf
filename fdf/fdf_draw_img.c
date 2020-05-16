@@ -91,14 +91,13 @@ static void	fdf_draw_line(t_point *p1, t_point *p2, t_main *fdf)
 {
 	int		dx;
 	int		dy;
-	int		sx;
-	int		sy;
+	int		s[2];
 	int		err[2];
 
 	dx = ft_abs(p1->x - p2->x);
 	dy = ft_abs(p1->y - p2->y);
-	sx = p1->x < p2->x ? 1 : -1;
-	sy = p1->y < p2->y ? 1 : -1;
+	s[0] = p1->x < p2->x ? 1 : -1;
+	s[1] = p1->y < p2->y ? 1 : -1;
 	err[0] = dx - dy;
 	while (p1->x != p2->x || p1->y != p2->y)
 	{
@@ -107,12 +106,12 @@ static void	fdf_draw_line(t_point *p1, t_point *p2, t_main *fdf)
 		if (err[1] >= -dy)
 		{
 			err[0] -= dy;
-			p1->x += sx;
+			p1->x += s[0];
 		}
 		if (err[1] <= dx)
 		{
 			err[0] += dx;
-			p1->y += sy;
+			p1->y += s[1];
 		}
 	}
 }

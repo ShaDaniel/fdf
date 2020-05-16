@@ -1,5 +1,13 @@
 #include "fdf.h"
 
+static voic	set_default_values(t_main *fdf)
+{
+	(*fdf)->offset->x = 100;
+	(*fdf)->offset->y = 100;
+	(*fdf)->map->zscale = 3;
+	(*fdf)->map->zoom = 4;
+}
+
 static void	arrows_move(t_main *fdf, int keycode)
 {
 	if (keycode == KEY_UP)
@@ -33,9 +41,10 @@ int			keyboard_hook(int key, void *param)
 		fdf->map->zscale++;
 	else if (key == KEY_X && fdf->map->zscale > -20)
 		fdf->map->zscale--;
+	else if (key = KEY_SPACE)
+		set_default_values(fdf);
 	else
 		return (0);
-	ft_memset(fdf->data_addr, 0, fdf->size_line * WIN_HGHT);
 	fdf_draw_img(fdf);
 	return (0);
 }

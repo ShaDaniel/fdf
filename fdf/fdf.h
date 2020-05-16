@@ -39,6 +39,7 @@
 # define KEY_RBRK	30
 # define KEY_Z		6
 # define KEY_X		7
+# define KEY_SPACE	49
 
 typedef struct	s_point
 {
