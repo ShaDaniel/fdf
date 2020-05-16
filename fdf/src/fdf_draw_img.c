@@ -79,7 +79,7 @@ static void fdf_draw_pix(t_point *p, t_main *fdf)
 	if (p->x >= 0 && p->x < WIN_WID && p->y >= 0 && p->y < WIN_HGHT)
 	{
 		index = p->y * fdf->size_line + p->x * (fdf->bits_per_pixel / 8);
-		colour = mlx_get_color_value(fdf->mlx, fdf_colour_get(p, fdf));
+		colour = mlx_get_color_value(fdf->mlx, fdf_colour_get(p));
 		fdf->data_addr[index] = colour;
 		fdf->data_addr[index + 1] = colour >> 8;
 		fdf->data_addr[index + 2] = colour >> 16;
