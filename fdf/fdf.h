@@ -69,6 +69,8 @@ typedef struct	s_map
 	char		origin_colour;
 	int			zoom;
 	int			zscale;
+	t_point		*p1;
+	t_point		*p2;
 }				t_map;
 
 typedef struct	s_main
