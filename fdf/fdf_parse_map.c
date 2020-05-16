@@ -2,10 +2,10 @@
 
 static void		fdf_min_max_z(int coord, t_main *fdf)
 {
-	if (coord < fdf->map->min)
-		fdf->map->min = coord;
-	if (coord > fdf->map->max)
-		fdf->map->max = coord;
+	if (coord < fdf->map->min_z)
+		fdf->map->min_z = coord;
+	if (coord > fdf->map->max_z)
+		fdf->map->max_z = coord;
 }
 
 static void		fdf_parse_width(char **coords, t_main *fdf)
