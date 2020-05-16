@@ -33,7 +33,7 @@ int			keyboard_hook(int key, void *param)
 
 	fdf = (t_main *)param;
 	check_esc_key(key);
-	else if (key == KEY_I)
+	if (key == KEY_I)
 		fdf->iso = 1;
 	else if (key == KEY_P)
 		fdf->iso = 0;

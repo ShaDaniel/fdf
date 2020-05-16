@@ -11,7 +11,7 @@ int		main(int ac, char **av)
 	if ((fd = open(av[1], O_RDONLY)) == -1)
 	{
 		perror("fdf: ");
-		return (0);	//* должна ли программа в этом случае завершаться нулём?
+		return (1);	//* должна ли программа в этом случае завершаться нулём?
 	}
 	fdf_init(&fdf);
 	fdf_parse_map(fd, fdf);

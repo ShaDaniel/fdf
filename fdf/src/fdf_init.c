@@ -1,7 +1,7 @@
 // #include "../inc/fdf.h"	// TODO
 #include "fdf.h"
 
-size_t	get_index_last_coords(char **coords)	//! check this
+static size_t	get_index_last_coords(char **coords)	//! check this //зачем?
 {
 	size_t i;
 
@@ -11,7 +11,7 @@ size_t	get_index_last_coords(char **coords)	//! check this
 	return (i);
 }
 
-void	fdf_default_values(t_main **fdf)
+static void		fdf_default_values(t_main **fdf)
 {
 	(*fdf)->map->width = 0;
 	(*fdf)->map->height = 0;
@@ -28,7 +28,7 @@ void	fdf_default_values(t_main **fdf)
 	(*fdf)->map->p2 = (t_point *)ft_memalloc(sizeof(t_point));
 }
 
-void	fdf_init(t_main **fdf)
+void			fdf_init(t_main **fdf)
 {
 	if (!(*fdf = (t_main *)ft_memalloc(sizeof(t_main))))
 		fdf_error(EMEM);
