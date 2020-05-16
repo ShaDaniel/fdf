@@ -3,13 +3,15 @@
 
 # include <stdlib.h>
 # include <stdint.h>
-# include "../libft/libft.h"
-# include "mlx.h"
 # include <stdio.h>
 # include <math.h>
 # include <string.h>
 
-# define PRG_NAME	"Tjonella's FDF"
+// # include "../libft/libft.h"	// TODO
+# include "libft.h"
+# include "mlx.h"
+
+# define PRG_NAME	"FDF"
 # define WIN_HGHT	720
 # define WIN_WID	1280
 
@@ -92,5 +94,6 @@ void			fdf_error(char *error);
 void			fdf_init(t_main **fdf);
 void			fdf_draw_img(t_main *fdf);
 int				keyboard_hook(int keycode, void *param);
+size_t			get_index_last_coords(char **coords);
 
 #endif

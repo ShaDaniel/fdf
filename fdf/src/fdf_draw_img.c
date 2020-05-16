@@ -1,13 +1,16 @@
-#include "../inc/fdf.h"
+// #include "../inc/fdf.h"	// TODO
+#include "fdf.h"
 
-static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *fdf)
+static void	fdf_point_set(t_point *p, t_point *fin,
+				size_t x, size_t y, t_main *fdf)
 {
 	int	old_x;
 	int	old_y;
 
 	p->x = fdf->offset->x + x * DIST_MIN * fdf->map->zoom;
 	p->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
-	p->z = (fdf->map->coords[y * fdf->map->width + x] - fdf->map->min_z) * fdf->map->zscale * fdf->map->zoom;
+	p->z = (fdf->map->coords[y * fdf->map->width + x] - fdf->map->min_z) *
+		fdf->map->zscale * fdf->map->zoom;
 	p->colour_s = fdf->map->colours[y * fdf->map->width + x] & 0xFFFFFF;
 	p->colour_f = WHITE;
 	if (!p->colour_s)
@@ -64,9 +67,12 @@ static int	fdf_colour_get(t_point *p)
 
 	if (!p->colour_f)
 		p->colour_f = WHITE;
-	red = balance_colours(((p->colour_f >> 16) & 0xFF), ((p->colour_s >> 16) & 0xFF), p->curr_growth);
-	green = balance_colours(((p->colour_f >> 8) & 0xFF),  ((p->colour_s >> 8) & 0xFF), p->curr_growth);
-	blue = balance_colours((p->colour_f & 0xFF), (p->colour_s & 0xFF), p->curr_growth);
+	red = balance_colours(((p->colour_f >> 16) & 0xFF),
+		((p->colour_s >> 16) & 0xFF), p->curr_growth);
+	green = balance_colours(((p->colour_f >> 8) & 0xFF),
+		((p->colour_s >> 8) & 0xFF), p->curr_growth);
+	blue = balance_colours((p->colour_f & 0xFF),
+		(p->colour_s & 0xFF), p->curr_growth);
 	p->curr_growth += p->clr_growth;
 	return ((red << 16) | (green << 8) | blue);
 }

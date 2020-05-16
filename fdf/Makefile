@@ -46,3 +46,4 @@ fclean: clean
 	make fclean -C $(DIR_LIBFT)
 
 re: fclean all
+	

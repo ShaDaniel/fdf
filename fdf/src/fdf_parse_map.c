@@ -1,4 +1,5 @@
-#include "../inc/fdf.h"
+// #include "../inc/fdf.h"	// TODO
+#include "fdf.h"
 
 static void		fdf_min_max_z(int coord, t_main *fdf)
 {
@@ -14,21 +15,23 @@ static void		fdf_parse_width(char **coords, t_main *fdf)
 	int			*tmp_coords;
 	uint32_t	*tmp_colours;
 
-	i = 0;
-	while (coords[i])
-		i++;
+	i = get_index_last_coords(coords);
 	if (fdf->map->height == 0)
 		fdf->map->width = i;
 	else if (fdf->map->width != i)
 		fdf_error(ERECTANG);
 	tmp_coords = fdf->map->coords;
 	tmp_colours = fdf->map->colours;
-	fdf->map->coords = (int *)ft_memalloc((fdf->map->total + fdf->map->width) * sizeof(int));
-	fdf->map->colours = (uint32_t *)ft_memalloc((fdf->map->total + fdf->map->width) * sizeof(uint32_t));
+	fdf->map->coords = (int *)ft_memalloc((fdf->map->total +
+		fdf->map->width) * sizeof(int));
+	fdf->map->colours = (uint32_t *)ft_memalloc((fdf->map->total +
+		fdf->map->width) * sizeof(uint32_t));
 	if (!fdf->map->coords || !fdf->map->colours)
 		fdf_error(EMEM);
-	ft_memcpy(fdf->map->coords, tmp_coords, fdf->map->total * sizeof(int));
-	ft_memcpy(fdf->map->colours, tmp_colours, fdf->map->total * sizeof(uint32_t));
+	ft_memcpy(fdf->map->coords, tmp_coords,
+		fdf->map->total * sizeof(int));
+	ft_memcpy(fdf->map->colours, tmp_colours,
+		fdf->map->total * sizeof(uint32_t));
 	free(tmp_coords);
 	free(tmp_colours);
 	fdf->map->total += fdf->map->width;
@@ -39,7 +42,8 @@ static uint32_t	fdf_parse_colour(char *clr)
 	uint32_t	colour;
 
 	colour = 0;
-	if (!clr[0] || !clr[1] || clr[0] != '0' || clr[1] != 'x' || !clr[2] || ft_strlen(clr) > 8)
+	if (!clr[0] || !clr[1] || clr[0] != '0' || clr[1] != 'x'
+				|| !clr[2] || ft_strlen(clr) > 8)
 		fdf_error(ECOLOUR);
 	clr += 2;
 	while (*clr)
@@ -58,7 +62,7 @@ static uint32_t	fdf_parse_colour(char *clr)
 	return (colour);
 }
 
-static void		fdf_parse_line(char **coords, t_main *fdf)
+static void		fdf_parse_line(char **coords, t_main *fdf)	//! 26 lines
 {
 	char	**coord_colors;
 	size_t	i;
@@ -72,7 +76,8 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 		if (coord_colors[1])
 		{
 			fdf->map->origin_colour = 1;
-			fdf->map->colours[fdf->map->height * fdf->map->width + i] = fdf_parse_colour(coord_colors[1]);
+			fdf->map->colours[fdf->map->height * fdf->map->width + i] =
+				fdf_parse_colour(coord_colors[1]);
 			if (coord_colors[2])
 				fdf_error(ECOLOUR);
 		}

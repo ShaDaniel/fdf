@@ -1,4 +1,5 @@
-#include "../inc/fdf.h"
+// #include "../inc/fdf.h"	// TODO
+#include "fdf.h"
 
 int		main(int ac, char **av)
 {
@@ -10,7 +11,7 @@ int		main(int ac, char **av)
 	if ((fd = open(av[1], O_RDONLY)) == -1)
 	{
 		perror("fdf: ");
-		return (0);
+		return (0);	//* должна ли программа в этом случае завершаться нулём?
 	}
 	fdf_init(&fdf);
 	fdf_parse_map(fd, fdf);

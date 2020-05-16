@@ -1,4 +1,15 @@
-#include "../inc/fdf.h"
+// #include "../inc/fdf.h"	// TODO
+#include "fdf.h"
+
+size_t	get_index_last_coords(char **coords)	//! check this
+{
+	size_t i;
+
+	i = 0;
+	while (coords[i])
+		i++;
+	return (i);
+}
 
 void	fdf_default_values(t_main **fdf)
 {
@@ -28,10 +39,12 @@ void	fdf_init(t_main **fdf)
 	fdf_default_values(fdf);
 	if (!((*fdf)->mlx = mlx_init()))
 		fdf_error(EMLX);
-	if (!((*fdf)->win = mlx_new_window((*fdf)->mlx, WIN_WID, WIN_HGHT, PRG_NAME)))
+	if (!((*fdf)->win =
+		mlx_new_window((*fdf)->mlx, WIN_WID, WIN_HGHT, PRG_NAME)))
 		fdf_error(EMLX);
 	if (!((*fdf)->img = mlx_new_image((*fdf)->mlx, WIN_WID, WIN_HGHT)))
 		fdf_error(EMLX);
-	if (!((*fdf)->data_addr = mlx_get_data_addr((*fdf)->img, &((*fdf)->bits_per_pixel), &((*fdf)->size_line), &((*fdf)->endian))))
+	if (!((*fdf)->data_addr = mlx_get_data_addr((*fdf)->img,
+		&((*fdf)->bits_per_pixel), &((*fdf)->size_line), &((*fdf)->endian))))
 		fdf_error(EMLX);
 }

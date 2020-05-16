@@ -1,4 +1,5 @@
-#include "../inc/fdf.h"
+// #include "../inc/fdf.h"	// TODO
+#include "fdf.h"
 
 static void	set_default_values(t_main *fdf)
 {
@@ -20,18 +21,24 @@ static void	arrows_move(t_main *fdf, int keycode)
 		fdf->offset->x += 10;
 }
 
+static void	check_esc_key(int key)
+{
+	if (key == KEY_ESC)
+		exit(0);
+}
+
 int			keyboard_hook(int key, void *param)
 {
 	t_main *fdf;
 
 	fdf = (t_main *)param;
-	if (key == KEY_ESC)
-		exit(0);
+	check_esc_key(key);
 	else if (key == KEY_I)
 		fdf->iso = 1;
 	else if (key == KEY_P)
 		fdf->iso = 0;
-	else if (key == KEY_DOWN || key == KEY_UP || key == KEY_RIGHT || key == KEY_LEFT)
+	else if (key == KEY_DOWN || key == KEY_UP ||
+			key == KEY_RIGHT || key == KEY_LEFT)
 		arrows_move(fdf, key);
 	else if (key == KEY_LBRK && fdf->map->zoom > 1)
 		fdf->map->zoom--;
