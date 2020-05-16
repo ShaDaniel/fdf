@@ -2,10 +2,10 @@
 
 static voic	set_default_values(t_main *fdf)
 {
-	(*fdf)->offset->x = 100;
-	(*fdf)->offset->y = 100;
-	(*fdf)->map->zscale = 3;
-	(*fdf)->map->zoom = 4;
+	fdf->offset->x = 100;
+	fdf->offset->y = 100;
+	fdf->map->zscale = 3;
+	fdf->map->zoom = 4;
 }
 
 static void	arrows_move(t_main *fdf, int keycode)
@@ -41,7 +41,7 @@ int			keyboard_hook(int key, void *param)
 		fdf->map->zscale++;
 	else if (key == KEY_X && fdf->map->zscale > -20)
 		fdf->map->zscale--;
-	else if (key = KEY_SPACE)
+	else if (key == KEY_SPACE)
 		set_default_values(fdf);
 	else
 		return (0);
