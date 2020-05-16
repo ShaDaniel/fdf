@@ -2,8 +2,8 @@
 
 static void	set_default_values(t_main *fdf)
 {
-	fdf->offset->x = 100;
-	fdf->offset->y = 100;
+	fdf->offset->x = 200;
+	fdf->offset->y = 200;
 	fdf->map->zscale = 3;
 	fdf->map->zoom = 4;
 }

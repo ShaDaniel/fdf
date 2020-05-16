@@ -7,11 +7,14 @@ SRC =		main.c\
 			fdf_draw_img.c\
 			fdf_hooks.c
 
-HEADERS =	fdf.h
+HEADERS =	inc/fdf.h
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(addprefix $(DIR_OBJ), $(SRC:.c=.o))
+DIR_SRC = src/
+DIR_OBJ = obj/
 
 LIBFT = 	libft.a
+MLX = 
 DIR_LIBFT =	./libft/
 DIR_MLX = ./minilibx_macos/
 
@@ -25,6 +28,23 @@ $(LIBFT):
 mlx:
 	make -C $(DIR_MLX)
 
-$(NAME): $(LIBFT) mlx
-	gcc -c $(SRC)
-	gcc $(CFLAGS) -o $(NAME) $(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit
+$(DIR_OBJ):
+	mkdir -p $(DIR_OBJ)
+
+$(DIR_OBJ)%.o: $(DIR_SRC)%.c $(HEADERS)
+	gcc $(CFLAGS) -c $< -o $@
+
+$(NAME): $(LIBFT) mlx $(DIR_OBJ) 
+	gcc -o $(NAME) $(DIR_OBJ)$(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit
+
+clean:
+	rm -f $(DIR_OBJ)
+	make clean -C $(DIR_LIBFT)
+	make clean -C $(DIR_MLX)
+
+fclean: clean
+	rm -f $(NAME)
+	make fclean -C $(DIR_LIBFT)
+	make fclean -C $(DIR_MLX)
+
+re: fclean all

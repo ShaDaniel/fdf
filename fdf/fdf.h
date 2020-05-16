@@ -11,8 +11,8 @@
 # include <string.h>
 
 # define PRG_NAME	"Tjonella's FDF"
-# define WIN_HGHT	600
-# define WIN_WID	800
+# define WIN_HGHT	720
+# define WIN_WID	1280
 
 # define ZOOM_MIN	1
 # define ZOOM_MAX	10
