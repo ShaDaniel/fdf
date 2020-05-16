@@ -56,12 +56,11 @@ static int	balance_colours(int c1, int c2, double growth)
 	return ((int)(c1 * weight + c2 * (1 - weight)));
 }
 
-static int	fdf_colour_get(t_point *p, t_main *fdf)
+static int	fdf_colour_get(t_point *p)
 {
 	int		red;
 	int		green;
 	int		blue;
-	float	weight;
 
 	if (!p->colour_f)
 		p->colour_f = WHITE;
