@@ -3,9 +3,9 @@
 
 # include <stdlib.h>
 # include <stdint.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include "mlx.h"
-# include "gnl/get_next_line.h"
+# include "../gnl/get_next_line.h"
 # include <stdio.h>
 # include <math.h>
 # include <string.h>
