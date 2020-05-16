@@ -44,6 +44,5 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	make fclean -C $(DIR_LIBFT)
-	make fclean -C $(DIR_MLX)
 
 re: fclean all
