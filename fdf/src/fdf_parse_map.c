@@ -1,4 +1,4 @@
-#include "fdf.h"
+#include "../inc/fdf.h"
 
 static void		fdf_min_max_z(int coord, t_main *fdf)
 {
