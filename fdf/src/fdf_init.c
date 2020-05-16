@@ -1,4 +1,4 @@
-#include "../inc/fdf.h"
+#include "fdf.h"
 
 void	fdf_default_values(t_main **fdf)
 {

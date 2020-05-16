@@ -1,4 +1,4 @@
-#include "../inc/fdf.h"
+#include "fdf.h"
 
 static void	fdf_point_set(t_point *p, t_point *fin, size_t x, size_t y, t_main *fdf)
 {

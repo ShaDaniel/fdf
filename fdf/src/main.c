@@ -1,4 +1,4 @@
-#include "../inc/fdf.h"
+#include "fdf.h"
 
 int		main(int ac, char **av)
 {
