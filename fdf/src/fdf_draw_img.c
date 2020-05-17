@@ -5,6 +5,7 @@ static void	fdf_point_set(size_t x, size_t y, t_main *fdf)
 	int	old_x;
 	int	old_y;
 
+	printf("%zuu %zuu\n", x, y);
 	fdf->map->p1->x = fdf->offset->x + x * DIST_MIN * fdf->map->zoom;
 	fdf->map->p1->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
 	fdf->map->p1->z = (fdf->map->coords[y * fdf->map->width + x] - fdf->map->min_z) *
@@ -94,7 +95,6 @@ void		fdf_draw_img(t_main *fdf)
 				fdf_point_set(x, y, fdf);
 				fdf_draw_line(fdf->map->p1, fdf->map->p2, fdf);
 			}
-			printf("%d %d\n", x, y);
 		}
 	}
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
