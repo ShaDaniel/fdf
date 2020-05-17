@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 20:55:44 by marvin            #+#    #+#             */
-/*   Updated: 2020/05/17 23:23:06 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:29:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		fdf_draw_img(t_main *fdf)
 	int	y;
 
 	y = -1;
-	ft_memset(fdf->data_addr, 0, fdf->size_line * WIN_HGHT);
+	//ft_memset(fdf->data_addr, 0, fdf->size_line * WIN_HGHT);
 	while ((size_t)++y < fdf->map->height)
 	{
 		x = -1;
