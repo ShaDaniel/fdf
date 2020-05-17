@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 22:43:31 by marvin            #+#    #+#             */
-/*   Updated: 2020/05/17 22:43:36 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:45:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "mlx.h"
 
 # define PRG_NAME	"FDF"
-# define WIN_HGHT	720
-# define WIN_WID	1280
+# define WIN_HGHT	600
+# define WIN_WID	800
 
 # define ZOOM_MIN	1
 # define ZOOM_MAX	10
