@@ -19,7 +19,7 @@ static void		fdf_default_values(t_main **fdf)
 	(*fdf)->map->coords = NULL;
 	(*fdf)->offset->x = 200;
 	(*fdf)->offset->y = 200;
-	(*fdf)->map->zscale = 3;
+	(*fdf)->map->zscale = 1;
 	(*fdf)->map->zoom = 4;
 	(*fdf)->map->max_z = 0;
 	(*fdf)->map->min_z = 0;
