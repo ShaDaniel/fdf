@@ -1,30 +1,29 @@
 #include "fdf.h"
 
-static void	fdf_point_set(size_t x, size_t y, t_main *fdf)
+static void	fdf_point_set(t_point *p, size_t x, size_t y, t_main *fdf)
 {
 	int	old_x;
 	int	old_y;
 
-	printf("%zuu %zuu\n", x, y);
-	fdf->map->p1->x = fdf->offset->x + x * DIST_MIN * fdf->map->zoom;
-	fdf->map->p1->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
-	fdf->map->p1->z = (fdf->map->coords[y * fdf->map->width + x] - fdf->map->min_z) *
+	p->x = fdf->offset->x + x * DIST_MIN * fdf->map->zoom;
+	p->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
+	p->z = (fdf->map->coords[y * fdf->map->width + x] - fdf->map->min_z) *
 		fdf->map->zscale * fdf->map->zoom;
-	fdf->map->p1->colour_s = fdf->map->colours[y * fdf->map->width + x] & 0xFFFFFF;
-	fdf->map->p1->colour_f = WHITE;
-	if (!fdf->map->p1->colour_s)
-		fdf->map->p1->colour_s = WHITE;
-	fdf->map->p1->colour_f = fdf->map->p2->colour_s;
+	p->colour_s = fdf->map->colours[y * fdf->map->width + x] & 0xFFFFFF;
+	p->colour_f = WHITE;
+	if (!p->colour_s)
+		p->colour_s = WHITE;
+	p->colour_f = fdf->map->p2->colour_s;
 	if (fdf->iso)
 	{
-		old_x = fdf->map->p1->x - fdf->offset->x;
-		old_y = fdf->map->p1->y - fdf->offset->y;
+		old_x = p->x - fdf->offset->x;
+		old_y = p->y - fdf->offset->y;
 
-		fdf->map->p1->x = (old_x - old_y) * cos(0.8) + fdf->offset->x;
-		fdf->map->p1->y = (old_x + old_y) * sin(0.8) - fdf->map->p1->z + fdf->offset->y;
+		p->x = (old_x - old_y) * cos(0.8) + fdf->offset->x;
+		p->y = (old_x + old_y) * sin(0.8) - p->z + fdf->offset->y;
 	}
-	fdf->map->p1->clr_growth = 1.0 / (DIST_MIN * fdf->map->zoom);
-	fdf->map->p1->curr_growth = 0;
+	p->clr_growth = 1.0 / (DIST_MIN * fdf->map->zoom);
+	p->curr_growth = 0;
 }
 
 static void fdf_draw_pix(t_point *p, t_main *fdf)
@@ -85,15 +84,15 @@ void		fdf_draw_img(t_main *fdf)
 		{
 			if ((size_t)x < fdf->map->width - 1)
 			{
-				fdf_point_set(x + 1, y, fdf);
-				fdf_point_set(x, y, fdf);
-				fdf_draw_line(fdf->map->p1, fdf->map->p2, fdf);
+				fdf_point_set(fdf->map->p2, x + 1, y, fdf);
+				fdf_point_set(p, x, y, fdf);
+				fdf_draw_line(p, fdf->map->p2, fdf);
 			}
 			if ((size_t)y < fdf->map->height - 1)
 			{
-				fdf_point_set(x, y + 1, fdf);
-				fdf_point_set(x, y, fdf);
-				fdf_draw_line(fdf->map->p1, fdf->map->p2, fdf);
+				fdf_point_set(fdf->map->p2, x, y + 1, fdf);
+				fdf_point_set(p, x, y, fdf);
+				fdf_draw_line(p, fdf->map->p2, fdf);
 			}
 		}
 	}
