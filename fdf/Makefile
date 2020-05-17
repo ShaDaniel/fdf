@@ -31,7 +31,7 @@ $(DIR_OBJ):
 	mkdir -p $(DIR_OBJ)
 
 $(DIR_OBJ)%.o: $(DIR_SRC)%.c $(HEADERS)
-	gcc $(CFLAGS) -c $< -o $@
+	gcc $(CFLAGS) -I $(HEADERS) -c $< -o $@
 
 $(NAME): $(LIBFT) mlx $(DIR_OBJ) $(OBJ)
 	gcc -o $(NAME) $(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit
