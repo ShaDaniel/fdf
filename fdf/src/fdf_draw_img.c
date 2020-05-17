@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 20:55:44 by marvin            #+#    #+#             */
-/*   Updated: 2020/05/17 22:31:27 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/17 22:47:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	fdf_point_set(t_point *p, size_t x, size_t y, t_main *fdf)
 	{
 		old_x = p->x - fdf->offset->x;
 		old_y = p->y - fdf->offset->y;
-
 		p->x = (old_x - old_y) * cos(0.8) + fdf->offset->x;
 		p->y = (old_x + old_y) * sin(0.8) - p->z + fdf->offset->y;
 	}
@@ -38,10 +37,10 @@ static void	fdf_point_set(t_point *p, size_t x, size_t y, t_main *fdf)
 	p->curr_growth = 0;
 }
 
-static void fdf_draw_pix(t_point *p, t_main *fdf)
+static void	fdf_draw_pix(t_point *p, t_main *fdf)
 {
-	size_t		index;
-	int			colour;
+	size_t	index;
+	int		colour;
 	
 	if (p->x >= 0 && p->x < WIN_WID && p->y >= 0 && p->y < WIN_HGHT)
 	{

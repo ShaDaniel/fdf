@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 03:55:24 by tjonella          #+#    #+#             */
-/*   Updated: 2020/05/17 22:33:51 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/17 22:44:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char	*ft_strnjoin(char const *s1, char const *s2, size_t n)
 	dest = NULL;
 	if (s1 && s2)
 	{
-		if (!(dest = malloc(ft_strlen(s1) + (ft_strlen(s2) > n ? n : ft_strlen(s2)) + 1)))
+		if (!(dest = malloc(ft_strlen(s1) + (ft_strlen(s2) > n\
+			 ? n : ft_strlen(s2)) + 1)))
 			return (NULL);
 		while (s1[++i])
 			dest[i] = s1[i];
