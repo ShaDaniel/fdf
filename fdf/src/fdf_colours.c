@@ -1,3 +1,5 @@
+#include "fdf.h"
+
 int			balance_colours(int c1, int c2, double growth)
 {
 	double weight;
