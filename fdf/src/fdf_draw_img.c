@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 20:55:44 by marvin            #+#    #+#             */
-/*   Updated: 2020/05/17 22:47:32 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:23:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	fdf_draw_pix(t_point *p, t_main *fdf)
 {
 	size_t	index;
 	int		colour;
-	
+
 	if (p->x >= 0 && p->x < WIN_WID && p->y >= 0 && p->y < WIN_HGHT)
 	{
 		index = p->y * fdf->size_line + p->x * (fdf->bits_per_pixel / 8);

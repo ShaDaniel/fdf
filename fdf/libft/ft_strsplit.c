@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 16:43:34 by tjonella          #+#    #+#             */
-/*   Updated: 2020/05/17 22:57:59 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:24:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static	char	**allocate(char const *s, char c)
 			while (s[i] && s[i] != c && s[++i] && s[i] != c)
 				len++;
 			if (!(dim2[x++] = (char *)malloc(sizeof(char) * (len + 1))))
-				return(free_error(x, &dim2));
+				return (free_error(x, &dim2));
 			len = 1;
 		}
 		if (!s[i])

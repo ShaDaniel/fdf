@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 20:55:32 by marvin            #+#    #+#             */
-/*   Updated: 2020/05/17 22:31:16 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:20:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ uint32_t	fdf_parse_colour(char *clr)
 			colour += *clr - 'A' + 10;
 		else
 			fdf_error(ECOLOUR);
-		clr++;	
+		clr++;
 	}
 	return (colour);
 }
