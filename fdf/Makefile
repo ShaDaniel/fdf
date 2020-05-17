@@ -5,7 +5,8 @@ SRC =		main.c\
 			fdf_parse_map.c\
 			fdf_error.c\
 			fdf_draw_img.c\
-			fdf_hooks.c
+			fdf_hooks.c\
+			fdf_colours.c
 
 HEADERS =	-I inc/ -I $(DIR_LIBFT) -I $(DIR_MLX)
 

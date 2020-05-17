@@ -1,5 +1,15 @@
 #include "fdf.h"
 
+static size_t	get_index_last_coords(char **coords)	//! check this //зачем? // вынес это для нормы, иначе не вмещалось. если всё работает как и раньше - тогда всё хорошо.
+{
+	size_t i;
+
+	i = 0;
+	while (coords[i])
+		i++;
+	return (i);
+}
+
 static void		fdf_min_max_z(int coord, t_main *fdf)
 {
 	if (coord < fdf->map->min_z)
@@ -34,31 +44,6 @@ static void		fdf_parse_width(char **coords, t_main *fdf)
 	free(tmp_coords);
 	free(tmp_colours);
 	fdf->map->total += fdf->map->width;
-}
-
-static uint32_t	fdf_parse_colour(char *clr)
-{
-	uint32_t	colour;
-
-	colour = 0;
-	if (!clr[0] || !clr[1] || clr[0] != '0' || clr[1] != 'x'
-				|| !clr[2] || ft_strlen(clr) > 8)
-		fdf_error(ECOLOUR);
-	clr += 2;
-	while (*clr)
-	{
-		colour *= 16;
-		if (*clr >= '0' && *clr <= '9')
-			colour += *clr - '0';
-		else if (*clr >= 'a' && *clr <= 'f')
-			colour += *clr - 'a' + 10;
-		else if (*clr >= 'A' && *clr <= 'F')
-			colour += *clr - 'A' + 10;
-		else
-			fdf_error(ECOLOUR);
-		clr++;	
-	}
-	return (colour);
 }
 
 static void		fdf_parse_line(char **coords, t_main *fdf)
