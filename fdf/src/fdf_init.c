@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-static size_t	get_index_last_coords(char **coords)	//! check this //зачем? // вынес это для нормы, иначе не вмещалось. если всё работает как и раньше - тогда всё хорошо.
+size_t			get_index_last_coords(char **coords)	//! check this //зачем? // вынес это для нормы, иначе не вмещалось. если всё работает как и раньше - тогда всё хорошо.
 {
 	size_t i;
 
