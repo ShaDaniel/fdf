@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 20:56:11 by marvin            #+#    #+#             */
-/*   Updated: 2020/05/17 22:31:50 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/17 22:37:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static size_t	get_index_last_coords(char **coords)	//! check this //зачем? // вынес это для нормы, иначе не вмещалось. если всё работает как и раньше - тогда всё хорошо.
+static size_t	get_index_last_coords(char **coords)
 {
 	size_t i;
 
@@ -94,7 +94,7 @@ void			fdf_parse_map(int fd, t_main *fdf)
 	int		check_gnl;
 
 	line = NULL;
-	while ((check_gnl = get_next_line(fd, &line)) > 0)	// было: while (get_next_line(fd, &line))
+	while ((check_gnl = get_next_line(fd, &line)) > 0)
 	{
 		coords = ft_strsplit(line, ' ');
 		fdf_parse_line(coords, fdf);
@@ -102,5 +102,5 @@ void			fdf_parse_map(int fd, t_main *fdf)
 		ft_freechararr(coords);
 	}
 	if (check_gnl == -1)
-		fdf_error(EMEM);	// возможно, стоит добавить другую причину завершения. например:  "fdf: gnl: error reed map\n"
+		fdf_error(EMEM);
 }

@@ -7,7 +7,6 @@
 # include <math.h>
 # include <string.h>
 
-// # include "../libft/libft.h"	// TODO
 # include "libft.h"
 # include "mlx.h"
 
