@@ -18,11 +18,11 @@ static void	fdf_point_set(t_point *p, t_point *fin,
 		p->colour_f = fin->colour_s;
 	if (fdf->iso)
 	{
-		old_x = p->x - p->offset->x;
-		old_y = p->y - p->offset->y;
+		old_x = p->x - fdf->offset->x;
+		old_y = p->y - fdf->offset->y;
 
-		p->x = (old_x - old_y) * cos(0.8) + p->offset->x;
-		p->y = (old_x + old_y) * sin(0.8) - p->z + p->offset->y;
+		p->x = (old_x - old_y) * cos(0.8) + fdf->offset->x;
+		p->y = (old_x + old_y) * sin(0.8) - p->z + fdf->offset->y;
 	}
 	if (fin)
 		p->clr_growth = 1.0 / (DIST_MIN * fdf->map->zoom);
