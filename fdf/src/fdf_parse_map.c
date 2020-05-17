@@ -65,7 +65,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 {
 	char	**coord_colors;
 	int		i;
-	int		coord;
+	int	 	coord;
 
 	i = -1;
 	fdf_parse_width(coords, fdf);

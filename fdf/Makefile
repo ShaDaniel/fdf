@@ -7,7 +7,7 @@ SRC =		main.c\
 			fdf_draw_img.c\
 			fdf_hooks.c
 
-HEADERS =	inc/fdf.h
+HEADERS =	inc/
 
 OBJ = $(addprefix $(DIR_OBJ), $(SRC:.c=.o))
 DIR_SRC = src/
