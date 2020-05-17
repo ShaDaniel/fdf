@@ -22,8 +22,7 @@ static void	fdf_point_set(size_t x, size_t y, t_main *fdf)
 		fdf->map->p1->x = (old_x - old_y) * cos(0.8) + fdf->offset->x;
 		fdf->map->p1->y = (old_x + old_y) * sin(0.8) - fdf->map->p1->z + fdf->offset->y;
 	}
-	if (fin)
-		fdf->map->p1->clr_growth = 1.0 / (DIST_MIN * fdf->map->zoom);
+	fdf->map->p1->clr_growth = 1.0 / (DIST_MIN * fdf->map->zoom);
 	fdf->map->p1->curr_growth = 0;
 }
 
