@@ -5,26 +5,26 @@ static void	fdf_point_set(size_t x, size_t y, t_main *fdf)
 	int	old_x;
 	int	old_y;
 
-	fdf->p1->x = fdf->offset->x + x * DIST_MIN * fdf->map->zoom;
-	fdf->p1->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
-	fdf->p1->z = (fdf->map->coords[y * fdf->map->width + x] - fdf->map->min_z) *
+	fdf->map->p1->x = fdf->offset->x + x * DIST_MIN * fdf->map->zoom;
+	fdf->map->p1->y = fdf->offset->y + y * DIST_MIN * fdf->map->zoom;
+	fdf->map->p1->z = (fdf->map->coords[y * fdf->map->width + x] - fdf->map->min_z) *
 		fdf->map->zscale * fdf->map->zoom;
-	fdf->p1->colour_s = fdf->map->colours[y * fdf->map->width + x] & 0xFFFFFF;
-	fdf->p1->colour_f = WHITE;
-	if (!fdf->p1->colour_s)
-		fdf->p1->colour_s = WHITE;
-	fdf->p1->colour_f = fdf->p2->colour_s;
+	fdf->map->p1->colour_s = fdf->map->colours[y * fdf->map->width + x] & 0xFFFFFF;
+	fdf->map->p1->colour_f = WHITE;
+	if (!fdf->map->p1->colour_s)
+		fdf->map->p1->colour_s = WHITE;
+	fdf->map->p1->colour_f = fdf->map->p2->colour_s;
 	if (fdf->iso)
 	{
-		old_x = fdf->p1->x - fdf->offset->x;
-		old_y = fdf->p1->y - fdf->offset->y;
+		old_x = fdf->map->p1->x - fdf->offset->x;
+		old_y = fdf->map->p1->y - fdf->offset->y;
 
-		fdf->p1->x = (old_x - old_y) * cos(0.8) + fdf->offset->x;
-		fdf->p1->y = (old_x + old_y) * sin(0.8) - fdf->p1->z + fdf->offset->y;
+		fdf->map->p1->x = (old_x - old_y) * cos(0.8) + fdf->offset->x;
+		fdf->map->p1->y = (old_x + old_y) * sin(0.8) - fdf->map->p1->z + fdf->offset->y;
 	}
 	if (fin)
-		fdf->p1->clr_growth = 1.0 / (DIST_MIN * fdf->map->zoom);
-	fdf->p1->curr_growth = 0;
+		fdf->map->p1->clr_growth = 1.0 / (DIST_MIN * fdf->map->zoom);
+	fdf->map->p1->curr_growth = 0;
 }
 
 static void fdf_draw_pix(t_point *p, t_main *fdf)
