@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 20:56:11 by marvin            #+#    #+#             */
-/*   Updated: 2020/05/17 22:37:57 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/17 22:57:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void		fdf_parse_line(char **coords, t_main *fdf)
 {
 	char	**coord_colors;
 	int		i;
-	int	 	coord;
+	int		coord;
 
 	i = -1;
 	fdf_parse_width(coords, fdf);

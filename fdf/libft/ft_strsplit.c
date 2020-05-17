@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 16:43:34 by tjonella          #+#    #+#             */
-/*   Updated: 2020/05/17 22:51:32 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/17 22:57:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static	int		count_words(char const *s, char c)
 	return (words);
 }
 
-static	char	*free_error(size_t x, char ***dim2)
+static	char	**free_error(size_t x, char ***dim2)
 {
 	while (x--)
 		free((*dim2)[x]);
