@@ -7,7 +7,7 @@ SRC =		main.c\
 			fdf_draw_img.c\
 			fdf_hooks.c
 
-HEADERS =	inc/ $(DIR_LIBFT) $(DIR_MLX)
+HEADERS =	-I inc/ -I $(DIR_LIBFT) -I $(DIR_MLX)
 
 OBJ = $(addprefix $(DIR_OBJ), $(SRC:.c=.o))
 DIR_SRC = src/
@@ -31,10 +31,10 @@ $(DIR_OBJ):
 	mkdir -p $(DIR_OBJ)
 
 $(DIR_OBJ)%.o: $(DIR_SRC)%.c $(HEADERS)
-	gcc $(CFLAGS) -I $(HEADERS) -c $< -o $@
+	gcc $(CFLAGS) $(HEADERS) -c $< -o $@
 
 $(NAME): $(LIBFT) mlx $(DIR_OBJ) $(OBJ)
-	gcc -o $(NAME) $(OBJ) -I $(HEADERS) -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit
+	gcc -o $(NAME) $(OBJ) -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit
 
 clean:
 	rm -rf $(DIR_OBJ)
