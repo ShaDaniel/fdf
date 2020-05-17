@@ -24,7 +24,6 @@ static void	fdf_point_set(size_t x, size_t y, t_main *fdf)
 	}
 	fdf->map->p1->clr_growth = 1.0 / (DIST_MIN * fdf->map->zoom);
 	fdf->map->p1->curr_growth = 0;
-	printf("%d %d", fdf->map->p1->x, fdf->map->p1->y);
 }
 
 static void fdf_draw_pix(t_point *p, t_main *fdf)
@@ -95,6 +94,7 @@ void		fdf_draw_img(t_main *fdf)
 				fdf_point_set(x, y, fdf);
 				fdf_draw_line(fdf->map->p1, fdf->map->p2, fdf);
 			}
+			printf("%d %d\n", x, y);
 		}
 	}
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
