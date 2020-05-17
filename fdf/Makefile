@@ -30,7 +30,7 @@ mlx:
 $(DIR_OBJ):
 	mkdir -p $(DIR_OBJ)
 
-$(DIR_OBJ)%.o: $(DIR_SRC)%.c $(HEADERS)
+$(DIR_OBJ)%.o: $(DIR_SRC)%.c inc/fdf.h
 	gcc $(CFLAGS) $(HEADERS) -c $< -o $@
 
 $(NAME): $(LIBFT) mlx $(DIR_OBJ) $(OBJ)
