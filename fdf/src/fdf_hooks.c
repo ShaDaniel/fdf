@@ -1,4 +1,3 @@
-// #include "../inc/fdf.h"	// TODO
 #include "fdf.h"
 
 static void	set_default_values(t_main *fdf)

@@ -1,4 +1,3 @@
-// #include "../inc/fdf.h"	// TODO
 #include "fdf.h"
 
 static void		fdf_min_max_z(int coord, t_main *fdf)
@@ -62,7 +61,7 @@ static uint32_t	fdf_parse_colour(char *clr)
 	return (colour);
 }
 
-static void		fdf_parse_line(char **coords, t_main *fdf)	//! 26 lines
+static void		fdf_parse_line(char **coords, t_main *fdf)
 {
 	char	**coord_colors;
 	int		i;
@@ -95,13 +94,16 @@ void			fdf_parse_map(int fd, t_main *fdf)
 {
 	char	*line;
 	char	**coords;
+	int		check_gnl;
 
 	line = NULL;
-	while (get_next_line(fd, &line))
+	while ((check_gnl = get_next_line(fd, &line)) > 0)	// было: while (get_next_line(fd, &line))
 	{
 		coords = ft_strsplit(line, ' ');
 		fdf_parse_line(coords, fdf);
 		ft_strdel(line);
 		ft_freechararr(coords);
 	}
+	if (check_gnl == -1)
+		fdf_error(EMEM);	// возможно, стоит добавить другую причину завершения. например:  "fdf: gnl: error reed map\n"
 }

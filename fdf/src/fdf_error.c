@@ -1,4 +1,3 @@
-// #include "../inc/fdf.h" // TODO
 #include "fdf.h"
 
 void	fdf_error(char *error)
