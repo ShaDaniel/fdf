@@ -94,7 +94,6 @@ void			fdf_error(char *error);
 void			fdf_init(t_main **fdf);
 void			fdf_draw_img(t_main *fdf);
 int				keyboard_hook(int keycode, void *param);
-size_t			get_index_last_coords(char **coords);
 uint32_t		fdf_parse_colour(char *clr);
 int				fdf_colour_get(t_point *p);
 int				balance_colours(int c1, int c2, double growth);
